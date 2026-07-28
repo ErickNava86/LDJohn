@@ -4,17 +4,56 @@ const lightbox = document.getElementById("lightbox");
 
 const lightboxImage = document.getElementById("lightbox-image");
 
+let currentImage = 0;
+
+const previous = document.getElementById("previous");
+
+const next = document.getElementById("next");
+
 const close = document.querySelector(".close");
 
-galleryImages.forEach(image => {
+
+function showImage(index){
+
+    console.log("Showing image:", index);
+    console.log(galleryImages[index]);
+
+    lightboxImage.src = galleryImages[index].src;
+
+}
+
+galleryImages.forEach((image, index) => {
 
     image.addEventListener("click", () => {
 
+        currentImage = index;
+
         lightbox.style.display = "flex";
-        lightboxImage.src = image.src;
+
+        showImage(currentImage);
 
     });
 
+});
+
+previous.addEventListener("click", () => {
+    currentImage--;
+
+    if (currentImage < 0) {
+        currentImage = galleryImages.length - 1;
+    }
+
+    showImage(currentImage);
+});
+
+next.addEventListener("click", () => {
+    currentImage++;
+
+    if (currentImage >= galleryImages.length) {
+        currentImage = 0;
+    }
+
+    showImage(currentImage);
 });
 
 close.addEventListener("click", () => {
@@ -31,4 +70,25 @@ lightbox.addEventListener("click", (event) => {
 
     }
 
+});
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0].screenX;
+});
+
+lightbox.addEventListener("touchend", (event) => {
+    touchEndX = event.changedTouches[0].screenX;
+
+    // Swipe Left
+    if (touchStartX - touchEndX > 50) {
+        next.click();
+    }
+
+    // Swipe Right
+    if (touchEndX - touchStartX > 50) {
+        previous.click();
+    }
 });

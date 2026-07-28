@@ -82,8 +82,6 @@
 </section>
 
 
-
-
 <section id="follow">
 
     <h2>FOLLOW JOHN!</h2>
@@ -98,8 +96,61 @@
             <img src="{{ url_for('static', filename='images/instagram-logo.png')}}"
             class="social-logo">
         </a>
+
+        <a href="https://www.yelp.com/biz/line-dancing-john-monrovia-2">
+            <img src="{{ url_for('static', filename='images/yelp-logo.png')}}"
+            class="social-logo">
+        </a>
     </div>
+
+    <div class="meet-me">
     <img src="{{ url_for('static', filename='images/john-cowboy.jpg')}}">
+    </div>
+
+</section>
+
+<section id="bio">
+
+    <div class="bio-quote">
+        “Everyone can learn to line dance—come join the fun!”
+    </div>
+
+    <p class="quote-author">
+        — Line Dancing John
+    </p>
+
+    <div class="meet-me">
+        <img src="{{ url_for('static', filename='images/john.png')}}" alt="Line Dancing John">
+    </div>
+
+    <h2>Meet Line Dancing John</h2>
+
+    <p>
+        Hi, I'm <strong>Line Dancing John</strong>. John or LD is fine!
+        Line dancing entered my life in 2016 when someone invited me to try
+        a lesson. I instantly fell in love with the music, the energy, and
+        the welcoming community.
+    </p>
+
+    <p>
+        Although my professional background is in social work, I became
+        passionate about teaching line dancing. Within just a few months I
+        was helping friends and coworkers learn, and eventually I was invited
+        to teach my own classes.
+    </p>
+
+    <p>
+        Today I teach classes, private lessons, parties, celebrations,
+        business events, and even cruise ship groups. My goal is simple:
+        make line dancing fun, welcoming, and easy for everyone.
+    </p>
+
+    <p>
+        I'm not classically trained, and I think that's my biggest strength.
+        I teach from the perspective of someone who learned from the ground
+        up, making every lesson approachable for beginners while keeping it
+        enjoyable for experienced dancers.
+    </p>
 
 </section>
 
@@ -112,11 +163,15 @@
 
 </section>
 
-<div id="lightbox" class="lightbox">
+<div id="lightbox">
 
     <span class="close">&times;</span>
 
+    <span id="previous" class="arrow previous">&#10094;</span>
+
     <img id="lightbox-image">
+
+    <span id="next" class="arrow next">&#10095;</span>
 
 </div>
 
