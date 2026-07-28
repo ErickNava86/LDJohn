@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<!--Header and nav bar-->
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static',
+            filename='images/LD-Icon.png') }}"
+            class="hero-image"
+            alt="Line Dancing John Mascot">
+    </div>
+    <nav>
+        <a href="#events">Events</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#follow">Follow</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+
+<!--Main Hero Image-->
+<img
+    src="{{ url_for('static',
+    filename='images/hero-otter.png') }}"
+    class="hero-image"
+    alt="Line Dancing John Mascot">
+
+
+
+<section id="events">
+
+    <h2>Upcoming Local Events</h2>
+
+    {% for flyer in flyers %}
+
+        <img
+            src="{{ url_for('static', filename='images/flyers/' + flyer) }}"
+            class="flyer"
+            alt="Event Flyer">
+
+    {% endfor %}
+
+</section>
+
+
+<section id="cruises">
+
+    <h2>Upcoming Cruises</h2>
+
+    <img src="{{ url_for('static', filename='images/john-trio.png')}}">
+
+    {% for flyer in cruise_flyers %}
+
+        <img
+            src="{{ url_for('static', filename='images/cruises/' + flyer) }}"
+            class="flyer"
+            alt="Cruise Flyer">
+
+    {% endfor %}
+
+</section>
+
+<section id="gallery">
+    
+    <h2>GALLERY</h2>
+
+    <div class="gallery-grid">
+
+        {% for image in gallery %}
+
+            <img
+                class="gallery-image"
+                src="{{ url_for('static', filename='images/gallery/' + image) }}"
+                alt="Gallery Image">
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+
+<section id="follow">
+
+    <h2>FOLLOW JOHN!</h2>
+
+    <div class="socials">
+        <a href="https://www.facebook.com/CrewzenJNguyen">
+            <img src="{{ url_for('static', filename='images/facebook-logo.png')}}"
+            class="social-logo">
+        </a>
+    
+        <a href="https://www.instagram.com/line_dancing_john/">
+            <img src="{{ url_for('static', filename='images/instagram-logo.png')}}"
+            class="social-logo">
+        </a>
+    </div>
+    <img src="{{ url_for('static', filename='images/john-cowboy.jpg')}}">
+
+</section>
+
+
+<section id="contact">
+
+    <h2>Contact</h2>
+
+    <p>codeident@gmail.com</p>
+
+</section>
+
+<div id="lightbox" class="lightbox">
+
+    <span class="close">&times;</span>
+
+    <img id="lightbox-image">
+
+</div>
+
+
+
+{% endblock %}
