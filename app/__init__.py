@@ -1,39 +1,54 @@
-from flask import Flask
+from flask import Flask, render_template
+
+from .admin import admin
+from .data_manager import (
+    get_all_events,
+    get_event,
+    get_local_flyers,
+    get_cruise_flyers,
+    get_homepage_gallery
+)
+
+
+# ---------- APP ----------
 
 def create_app():
+
     app = Flask(__name__)
+
+    app.config["SECRET_KEY"] = "super-secret-key-change-me"
+    app.config["ADMIN_PASSWORD"] = "dance2026"
+
+    app.register_blueprint(admin)
 
     @app.route("/")
     def home():
 
-        flyers = [
-            "flyer1.png",
-            "flyer2.png",
-            "flyer-chaparral.jpg",
-            "flyer-vfw.png"
-        ]
+        return render_template(
+            "index.html",
+            events=get_all_events(),
+            local_flyers=get_local_flyers(),
+            cruise_flyers=get_cruise_flyers(),
+            homepage_gallery=get_homepage_gallery()
+        )
 
-        cruise_flyers = [
-            "flyer-easter.png",
-            "flyer-royal.png"
-        ]
 
-        gallery = [
-            "image1.png",
-            "image2.png",
-            "image3.jpg",
-            "image4.png",
-            "image5.jpg",
-            "image6.jpg",
-            "image7.jpg",
-            "image8.jpg",
-            "image9.jpg",
-            "image10.jpg",
-            "image11.jpg",
-            "image12.jpg",
-        ]
+    @app.route("/gallery")
+    def gallery():
 
-        from flask import render_template
-        return render_template("index.html", flyers=flyers, cruise_flyers=cruise_flyers, gallery = gallery)
+        return render_template(
+            "gallery.html",
+            events=get_all_events()
+        )
+
+
+    @app.route("/gallery/<slug>")
+    def event_page(slug):
+
+        return render_template(
+            "event.html",
+            event=get_event(slug)
+        )
+
 
     return app

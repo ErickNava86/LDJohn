@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <h1>Line Dancing John Control Panel</h1>
+
+    <a href="/admin/add" class="add-event-btn">
+        ➕ Add New Event
+    </a>
+
+    {% for event in events %}
+
+    <div class="admin-event-card">
+
+        <img src="{{ url_for('static', filename=event.cover_image) }}"
+             alt="{{ event.title }}">
+
+        <div class="admin-event-info">
+
+            <h2>{{ event.title }}</h2>
+
+            <p>📍 {{ event.location }}</p>
+
+            <p>📅 {{ event.date }}</p>
+
+        </div>
+
+        <div class="admin-buttons">
+
+            <a href="/admin/edit/{{ event.slug }}">✏ Edit</a>
+
+            <a href="/admin/photos/{{ event.slug }}">📸 Photos</a>
+
+            <a href="/admin/delete/{{ event.slug }}">🗑 Delete</a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

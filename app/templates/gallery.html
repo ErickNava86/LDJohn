@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="gallery-page">
+
+    <h1>Photo Gallery</h1>
+
+    <p class="event-intro">
+        Take a look at some of our favorite memories!
+    </p>
+
+    <div class="event-grid">
+
+        {% for event in events %}
+
+        <a class="event-link"
+           href="{{ url_for('event_page', slug=event.slug) }}">
+
+            <div class="event-card">
+
+                <img
+                    src="{{ url_for('static', filename=event.cover_url) }}"
+                    alt="{{ event.title }}">
+
+                <div class="event-info">
+
+                    <h3>{{ event.title }}</h3>
+
+                    <p>{{ event.date }}</p>
+
+                    <p>{{ event.venue }}</p>
+
+                    <p class="event-description">
+                        {{ event.description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

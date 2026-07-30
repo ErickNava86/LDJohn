@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <h1>Add New Event</h1>
+
+    <form method="POST">
+
+        <label>Title</label>
+        <input type="text" name="title" required>
+
+        <label>Date</label>
+        <input type="text" name="date" required>
+
+        <label>Venue</label>
+        <input type="text" name="venue" required>
+
+        <label>Description</label>
+        <textarea name="description" rows="6"></textarea>
+
+        <button type="submit">
+            Save Event
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

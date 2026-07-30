@@ -1,8 +1,28 @@
 const galleryImages = document.querySelectorAll(".gallery-image");
 
+if (galleryImages.length > 0) {
+
+    galleryImages.forEach((image, index) => {
+
+        image.addEventListener("click", () => {
+
+            currentImage = index;
+
+            lightbox.style.display = "flex";
+
+            showImage(currentImage);
+
+        });
+
+    });
+
+}
+
 const lightbox = document.getElementById("lightbox");
 
 const lightboxImage = document.getElementById("lightbox-image");
+
+const lightboxCaption = document.getElementById("lightbox-caption");
 
 let currentImage = 0;
 
@@ -15,13 +35,19 @@ const close = document.querySelector(".close");
 
 function showImage(index){
 
-    console.log("Showing image:", index);
-    console.log(galleryImages[index]);
-
     lightboxImage.src = galleryImages[index].src;
 
-}
+    const caption = galleryImages[index].dataset.caption;
 
+    if (caption) {
+        lightboxCaption.textContent = caption;
+        lightboxCaption.style.display = "block";
+    }
+    else {
+        lightboxCaption.style.display = "none";
+    }
+
+}
 galleryImages.forEach((image, index) => {
 
     image.addEventListener("click", () => {
@@ -91,4 +117,24 @@ lightbox.addEventListener("touchend", (event) => {
     if (touchEndX - touchStartX > 50) {
         previous.click();
     }
+});
+
+document.addEventListener("keydown", (event) => {
+
+    if (lightbox.style.display !== "flex") {
+        return;
+    }
+
+    if (event.key === "ArrowLeft") {
+        previous.click();
+    }
+
+    if (event.key === "ArrowRight") {
+        next.click();
+    }
+
+    if (event.key === "Escape") {
+        close.click();
+    }
+
 });

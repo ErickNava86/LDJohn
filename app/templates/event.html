@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="event-page">
+
+<a href="{{ url_for('gallery') }}" class="back-button">
+    ← Back to Gallery
+</a>
+
+<div class="event-header">
+
+    <h1>{{ event.title }}</h1>
+
+    <p class="event-date">📅 {{ event.date }}</p>
+
+    <p class="event-venue">📍 {{ event.venue }}</p>
+
+    <p class="event-description">
+        {{ event.description }}
+    </p>
+
+</div>
+
+<div class="event-cover">
+
+    <img
+        src="{{ url_for('static', filename=event.cover_url) }}"
+        alt="{{ event.title }}">
+
+</div>
+
+<h2 class="gallery-heading">Photo Gallery</h2>
+
+<div class="event-gallery">
+
+    {% for photo in event.gallery %}
+
+        <img
+            class="gallery-image event-photo"
+            src="{{ url_for('static', filename=photo.url) }}"
+            alt="{{ event.title }}"
+            data-caption="{{ photo.caption }}">
+
+    {% endfor %}
+
+</div>
+
+</section>
+
+{% endblock %}

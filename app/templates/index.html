@@ -1,42 +1,21 @@
 {% extends "base.html" %}
 
-
 {% block content %}
-
-<!--Header and nav bar-->
-<header>
-    <div class="logo">
-        <img src="{{ url_for('static',
-            filename='images/LD-Icon.png') }}"
-            class="hero-image"
-            alt="Line Dancing John Mascot">
-    </div>
-    <nav>
-        <a href="#events">Events</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#follow">Follow</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-
-
-<!--Main Hero Image-->
-<img
-    src="{{ url_for('static',
-    filename='images/hero-otter.png') }}"
-    class="hero-image"
-    alt="Line Dancing John Mascot">
-
 
 
 <section id="events">
 
+    <img
+    src="{{ url_for('static', filename='images/heroes/1.jpg') }}"
+    class="hero-image"
+    alt="Line Dancing John Mascot">
+
     <h2>Upcoming Local Events</h2>
 
-    {% for flyer in flyers %}
+    {% for flyer in local_flyers %}
 
         <img
-            src="{{ url_for('static', filename='images/flyers/' + flyer) }}"
+            src="{{ url_for('static', filename='images/flyers/local/' ~ flyer) }}"
             class="flyer"
             alt="Event Flyer">
 
@@ -49,12 +28,13 @@
 
     <h2>Upcoming Cruises</h2>
 
-    <img src="{{ url_for('static', filename='images/john-trio.png')}}">
+    <img
+        src="{{ url_for('static', filename='images/heroes/2.png') }}">
 
     {% for flyer in cruise_flyers %}
 
         <img
-            src="{{ url_for('static', filename='images/cruises/' + flyer) }}"
+            src="{{ url_for('static', filename='images/flyers/cruise/' ~ flyer) }}"
             class="flyer"
             alt="Cruise Flyer">
 
@@ -62,20 +42,33 @@
 
 </section>
 
+
 <section id="gallery">
-    
+
     <h2>GALLERY</h2>
 
     <div class="gallery-grid">
 
-        {% for image in gallery %}
+        {% for photo in homepage_gallery %}
 
             <img
                 class="gallery-image"
-                src="{{ url_for('static', filename='images/gallery/' + image) }}"
+                src="{{ url_for('static', filename=photo.url) }}"
                 alt="Gallery Image">
 
         {% endfor %}
+
+    </div>
+
+    <div class="gallery-link">
+
+        <a
+            href="{{ url_for('gallery') }}"
+            class="view-gallery-button">
+
+            View Full Gallery →
+
+        </a>
 
     </div>
 
@@ -87,27 +80,34 @@
     <h2>FOLLOW JOHN!</h2>
 
     <div class="socials">
+
         <a href="https://www.facebook.com/CrewzenJNguyen">
-            <img src="{{ url_for('static', filename='images/facebook-logo.png')}}"
-            class="social-logo">
+            <img
+                src="{{ url_for('static', filename='images/social/facebook.png') }}"
+                class="social-logo">
         </a>
-    
+
         <a href="https://www.instagram.com/line_dancing_john/">
-            <img src="{{ url_for('static', filename='images/instagram-logo.png')}}"
-            class="social-logo">
+            <img
+                src="{{ url_for('static', filename='images/social/instagram.png') }}"
+                class="social-logo">
         </a>
 
         <a href="https://www.yelp.com/biz/line-dancing-john-monrovia-2">
-            <img src="{{ url_for('static', filename='images/yelp-logo.png')}}"
-            class="social-logo">
+            <img
+                src="{{ url_for('static', filename='images/social/yelp.png') }}"
+                class="social-logo">
         </a>
+
     </div>
 
-    <div class="meet-me">
-    <img src="{{ url_for('static', filename='images/john-cowboy.jpg')}}">
+    <div class="meet-me" id="portriat">
+        <img
+            src="{{ url_for('static', filename='images/heroes/3.png') }}">
     </div>
 
 </section>
+
 
 <section id="bio">
 
@@ -120,7 +120,9 @@
     </p>
 
     <div class="meet-me">
-        <img src="{{ url_for('static', filename='images/john.png')}}" alt="Line Dancing John">
+        <img
+            src="{{ url_for('static', filename='images/heroes/1.jpg') }}"
+            alt="Line Dancing John">
     </div>
 
     <h2>Meet Line Dancing John</h2>
@@ -157,11 +159,13 @@
 
 <section id="contact">
 
-    <h2>Contact</h2>
+    <h2>Contact/Booking</h2>
 
+    <p>(626)247-4157</p>
     <p>codeident@gmail.com</p>
 
 </section>
+
 
 <div id="lightbox">
 
@@ -174,7 +178,5 @@
     <span id="next" class="arrow next">&#10095;</span>
 
 </div>
-
-
 
 {% endblock %}

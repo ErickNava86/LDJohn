@@ -1,0 +1,89 @@
+[
+    {
+        "slug": "monday-night-vfw",
+        "title": "Monday Night @ VFW",
+        "date": "July 21, 2026",
+        "venue": "VFW Hall",
+        "description": "Weekly beginner-friendly line dancing.",
+
+        "cover_image": "cover",
+
+        "gallery": [
+            {
+                "image": "1",
+                "caption": "Everyone learning the Electric Slide."
+            },
+            {
+                "image": "2",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            },
+            {
+                "image": "4",
+                "caption": ""
+            }
+        ]
+    },
+
+    {
+        "slug": "chaparral-saloon",
+        "title": "Chaparral Saloon",
+        "date": "June 18, 2026",
+        "venue": "Chaparral",
+        "description": "A fun evening of country dancing.",
+
+        "cover_image": "cover",
+
+        "gallery": [
+            {
+                "image": "1",
+                "caption": ""
+            },
+            {
+                "image": "2",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            }
+        ]
+    },
+
+    {
+        "slug": "royal-caribbean-cruise",
+        "title": "Royal Caribbean Cruise",
+        "date": "April 2026",
+        "venue": "Royal Caribbean",
+        "description": "Line dancing at sea with friends.",
+
+        "cover_image": "cover",
+
+        "gallery": [
+            {
+                "image": "1",
+                "caption": ""
+            },
+            {
+                "image": "2",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            },
+            {
+                "image": "4",
+                "caption": ""
+            }
+        ]
+    }
+
+]
