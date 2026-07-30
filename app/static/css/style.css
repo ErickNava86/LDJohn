@@ -112,7 +112,8 @@ img{
 #bio{
     max-width:800px;
     margin:0 auto;
-    padding:30px 30px;
+    padding-top: 0px;
+    padding-bottom: 30px;
     line-height:1.8;
     text-align:left;
 }
@@ -131,7 +132,7 @@ img{
 .quote-author{
     text-align:center;
     margin-top:-25px;
-    margin-bottom:40px;
+    margin-bottom:0px;
     font-weight:bold;
     color:#888;
 }
@@ -139,7 +140,8 @@ img{
 .meet-me{
     display: flex;
     justify-content: center;
-    margin: 30px 0;
+    margin-top: 75px;
+    margin-bottom: 10px;
 }
 
 .meet-me img{
@@ -148,6 +150,10 @@ img{
     height: auto;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+#follow .meet-me {
+    margin-top: 30px;
 }
 
 #bio h2{
@@ -184,7 +190,27 @@ img{
     transform:scale(1.1);
 }
 
+.western-divider{
 
+    width:220px;
+    height:4px;
+
+    margin:45px auto;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        #b67a2d,
+        #d4af37,
+        #b67a2d,
+        transparent
+    );
+
+    border-radius:50px;
+
+    box-shadow:0 0 8px rgba(212,175,55,.35);
+
+}
 
 
 
@@ -238,41 +264,61 @@ img{
 
 /* ---------- GALLERY ---------- */
 
-.gallery-link {
-    text-align: center;
-    margin-top: 2rem;
+.gallery-link{
+    text-align:center;
+    margin-top:35px;
 }
 
-.view-gallery-button {
-    display: inline-block;
+.view-gallery-button{
 
-    padding: 16px 40px;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
 
-    font-family: "Rye", serif;
-    font-size: 1.3rem;
+    padding:18px 42px;
+    margin-bottom: 20px;
 
-    color: white;
-    text-decoration: none;
+    font-family:"Rye", serif;
+    font-size:1.4rem;
 
-    background: linear-gradient(#3d3d3d, #1f1f1f);
+    color:#fff;
+    text-decoration:none;
 
-    border: 3px solid #b67a2d;
-    border-radius: 10px;
+    background:linear-gradient(to bottom,#4b4b4b,#1d1d1d);
 
-    box-shadow: 0 6px 15px rgba(0,0,0,.25);
+    border:3px solid #c8892f;
+    border-radius:12px;
 
-    transition: all .25s ease;
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.15);
+
+    transition:all .25s ease;
 }
 
-.view-gallery-button:hover {
+.view-gallery-button:hover{
 
-    background: linear-gradient(#5a5a5a, #2d2d2d);
+    color:#ffd76b;
 
-    color: #ffd27a;
+    background:linear-gradient(to bottom,#616161,#2b2b2b);
 
-    transform: translateY(-4px);
+    transform:translateY(-4px);
 
-    box-shadow: 0 10px 25px rgba(0,0,0,.35);
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.45),
+        0 0 18px rgba(200,137,47,.35);
+
+}
+
+.view-gallery-button span{
+
+    transition:.25s ease;
+
+}
+
+.view-gallery-button:hover span{
+
+    transform:translateX(8px);
 
 }
 
@@ -511,6 +557,50 @@ img{
     text-align:center;
 }
 
+.contact-booking {
+
+    margin-top: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    font-family: "Montserrat", sans-serif;
+
+}
+
+.contact-booking .phone {
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    color: #1f1f1f;
+
+    text-decoration: none;
+
+    transition: .25s;
+
+}
+
+.contact-booking .email {
+
+    font-size: 1.3rem;
+
+    color: #6b4b1f;
+
+    text-decoration: none;
+
+    transition: .25s;
+
+}
+
+.contact-booking a:hover{
+
+    color:#c8892f;
+
+}
+
 /* ---------- FOOTER ---------- */
 
 footer{
@@ -627,6 +717,10 @@ footer{
 /* ---------- PHONE ---------- */
 
 @media (max-width:700px){
+
+    section{
+    padding:10px 20px;
+    }
 
     header{
         flex-direction:column;

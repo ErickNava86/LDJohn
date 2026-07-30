@@ -57,11 +57,11 @@
 
     <div class="gallery-link">
 
-        <a
-            href="{{ url_for('gallery') }}"
-            class="view-gallery-button">
+        <a href="{{ url_for('gallery') }}" class="view-gallery-button">
 
-            View Full Gallery
+        View Full Gallery
+
+        <span>→</span>
 
         </a>
 
@@ -96,7 +96,7 @@
 
     </div>
 
-    <div class="meet-me" id="portriat">
+    <div class="meet-me" id="follow">
         <img
             src="{{ url_for('static', filename='images/heroes/3.png') }}">
     </div>
@@ -113,6 +113,8 @@
     <p class="quote-author">
         — Line Dancing John
     </p>
+
+    <div class="western-divider"></div>
 
     <div class="meet-me">
         <img
@@ -156,8 +158,15 @@
 
     <h2>Contact/Booking</h2>
 
-    <p>(626)247-4157</p>
-    <p>codeident@gmail.com</p>
+    <div class="contact-booking">
+        <div class="phone">
+            <p>(626)247-4157</p>
+        </div>
+
+        <div class="email">
+            <p>codeident@gmail.com</p>
+        </div>
+    </div>  
 
 </section>
 
