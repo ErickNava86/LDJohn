@@ -1,19 +1,43 @@
-from flask import Blueprint, render_template, request, redirect, url_for
-from werkzeug.utils import secure_filename
-import shutil
+from functools import wraps
+import hmac
 import os
 import re
+import shutil
+
+from flask import (
+    Blueprint,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for
+)
+from werkzeug.utils import secure_filename
 
 from .data_manager import (
-    load_events,
     add_event,
+    delete_event,
     get_all_events,
     get_event,
-    update_event,
-    delete_event
+    load_events,
+    update_event
 )
 
 admin = Blueprint("admin", __name__)
+
+
+def admin_required(view_function):
+
+    @wraps(view_function)
+    def wrapped_view(*args, **kwargs):
+
+        if not session.get("admin_logged_in"):
+            return redirect(url_for("admin.login"))
+
+        return view_function(*args, **kwargs)
+
+    return wrapped_view
 
 
 def create_slug(title):
@@ -32,7 +56,51 @@ def create_slug(title):
     return slug
 
 
+@admin.route("/admin/login", methods=["GET", "POST"])
+def login():
+
+    if session.get("admin_logged_in"):
+        return redirect(url_for("admin.dashboard"))
+
+    error = None
+
+    if request.method == "POST":
+
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
+
+        username_matches = hmac.compare_digest(
+            username,
+            current_app.config["ADMIN_USERNAME"]
+        )
+        password_matches = hmac.compare_digest(
+            password,
+            current_app.config["ADMIN_PASSWORD"]
+        )
+
+        if username_matches and password_matches:
+            session.clear()
+            session["admin_logged_in"] = True
+            return redirect(url_for("admin.dashboard"))
+
+        error = "Invalid username or password."
+
+    return render_template(
+        "admin/login.html",
+        error=error
+    )
+
+
+@admin.route("/admin/logout", methods=["POST"])
+@admin_required
+def logout():
+
+    session.clear()
+    return redirect(url_for("admin.login"))
+
+
 @admin.route("/admin")
+@admin_required
 def dashboard():
 
     events = get_all_events()
@@ -44,6 +112,7 @@ def dashboard():
 
 
 @admin.route("/admin/add", methods=["GET", "POST"])
+@admin_required
 def add_event_page():
 
     if request.method == "POST":
@@ -51,20 +120,16 @@ def add_event_page():
         slug = create_slug(request.form["title"])
 
         new_event = {
-
             "title": request.form["title"],
             "slug": slug,
             "date": request.form["date"],
             "venue": request.form["venue"],
             "description": request.form["description"],
             "gallery": []
-
         }
 
-        # Save event to JSON
         add_event(new_event)
 
-        # Create image folder
         event_folder = os.path.join(
             "app",
             "static",
@@ -75,7 +140,6 @@ def add_event_page():
 
         os.makedirs(event_folder, exist_ok=True)
 
-        # Save cover image
         cover = request.files.get("cover_photo")
 
         if cover and cover.filename:
@@ -90,9 +154,7 @@ def add_event_page():
                 )
             )
 
-        # Save gallery images
         gallery = request.files.getlist("gallery_photos")
-
         image_number = 1
 
         for photo in gallery:
@@ -117,6 +179,7 @@ def add_event_page():
 
 
 @admin.route("/admin/edit/<slug>", methods=["GET", "POST"])
+@admin_required
 def edit_event_page(slug):
 
     event = get_event(slug)
@@ -124,40 +187,34 @@ def edit_event_page(slug):
     if request.method == "POST":
 
         updated_event = {
-
             "title": request.form["title"],
             "slug": event["slug"],
             "date": request.form["date"],
             "venue": request.form["venue"],
             "description": request.form["description"],
             "gallery": event["gallery"]
-
         }
 
         update_event(slug, updated_event)
 
-        # Replace cover photo
+        event_folder = os.path.join(
+            "app",
+            "static",
+            "images",
+            "events",
+            slug
+        )
+
+        os.makedirs(event_folder, exist_ok=True)
 
         cover = request.files.get("cover_photo")
 
         if cover and cover.filename:
 
-            event_folder = os.path.join(
-                "app",
-                "static",
-                "images",
-                "events",
-                slug
-            )
-
-            # Remove existing cover
             for file in os.listdir(event_folder):
 
                 if file.startswith("cover"):
-
-                    os.remove(
-                        os.path.join(event_folder, file)
-                    )
+                    os.remove(os.path.join(event_folder, file))
 
             filename = secure_filename(cover.filename)
             extension = os.path.splitext(filename)[1]
@@ -169,58 +226,44 @@ def edit_event_page(slug):
                 )
             )
 
-            # ===========\
-            # Upload new gallery photos
+        gallery = request.files.getlist("photos")
 
-    gallery = request.files.getlist("photos")
+        if gallery:
 
-    if gallery:
+            image_number = 1
 
-        event_folder = os.path.join(
-            "app",
-            "static",
-            "images",
-            "events",
-            slug
-        )
+            while True:
 
-        image_number = 1
+                exists = False
 
-        # Find the next available image number
-        while True:
+                for file in os.listdir(event_folder):
 
-            exists = False
+                    name = os.path.splitext(file)[0]
 
-            for file in os.listdir(event_folder):
+                    if name == str(image_number):
+                        exists = True
+                        break
 
-                name = os.path.splitext(file)[0]
-
-                if name == str(image_number):
-
-                    exists = True
+                if not exists:
                     break
 
-            if not exists:
-                break
-
-            image_number += 1
-
-        # Save new images
-        for photo in gallery:
-
-            if photo and photo.filename:
-
-                filename = secure_filename(photo.filename)
-                extension = os.path.splitext(filename)[1]
-
-                photo.save(
-                    os.path.join(
-                        event_folder,
-                        f"{image_number}{extension}"
-                    )
-                )
-
                 image_number += 1
+
+            for photo in gallery:
+
+                if photo and photo.filename:
+
+                    filename = secure_filename(photo.filename)
+                    extension = os.path.splitext(filename)[1]
+
+                    photo.save(
+                        os.path.join(
+                            event_folder,
+                            f"{image_number}{extension}"
+                        )
+                    )
+
+                    image_number += 1
 
         return redirect(url_for("admin.dashboard"))
 
@@ -230,12 +273,8 @@ def edit_event_page(slug):
     )
 
 
-@admin.route("/admin/delete")
-def delete_events_page():
-    return render_template("admin/delete_events.html")
-
-
 @admin.route("/admin/photos/<slug>")
+@admin_required
 def photos_page(slug):
 
     event = get_event(slug)
@@ -257,9 +296,7 @@ def photos_page(slug):
             if file.startswith("cover"):
                 continue
 
-            photos.append(
-                f"images/events/{slug}/{file}"
-            )
+            photos.append(f"images/events/{slug}/{file}")
 
     return render_template(
         "admin/photos.html",
@@ -267,7 +304,9 @@ def photos_page(slug):
         photos=photos
     )
 
+
 @admin.route("/admin/delete-photo", methods=["POST"])
+@admin_required
 def delete_photo():
 
     slug = request.form["slug"]
@@ -289,13 +328,13 @@ def delete_photo():
         )
     )
 
+
 @admin.route("/admin/delete/<slug>", methods=["POST"])
+@admin_required
 def delete_event_page(slug):
 
-    # Remove event from events.json
     delete_event(slug)
 
-    # Remove the event's image folder
     event_folder = os.path.join(
         "app",
         "static",

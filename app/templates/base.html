@@ -35,6 +35,12 @@
         <a href="/#follow">Follow</a>
         <a href="/#contact">Contact</a>
 
+        {% if session.get("admin_logged_in") %}
+        <form action="{{ url_for('admin.logout') }}" method="POST" class="logout-form">
+            <button type="submit">Logout</button>
+        </form>
+        {% endif %}
+
     </nav>
 
 </header>

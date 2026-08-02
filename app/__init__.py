@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 
+from config import Config
 from .admin import admin
 from .data_manager import (
     get_all_events,
@@ -15,9 +16,7 @@ from .data_manager import (
 def create_app():
 
     app = Flask(__name__)
-
-    app.config["SECRET_KEY"] = "super-secret-key-change-me"
-    app.config["ADMIN_PASSWORD"] = "dance2026"
+    app.config.from_object(Config)
 
     app.register_blueprint(admin)
 
@@ -32,7 +31,6 @@ def create_app():
             homepage_gallery=get_homepage_gallery()
         )
 
-
     @app.route("/gallery")
     def gallery():
 
@@ -41,7 +39,6 @@ def create_app():
             events=get_all_events()
         )
 
-
     @app.route("/gallery/<slug>")
     def event_page(slug):
 
@@ -49,6 +46,5 @@ def create_app():
             "event.html",
             event=get_event(slug)
         )
-
 
     return app
