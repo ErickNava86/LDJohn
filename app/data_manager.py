@@ -66,34 +66,21 @@ def prepare_event(event):
     event = event.copy()
 
     cover = find_image(
-    event["slug"],
-    event["cover_image"]
+        event["slug"],
+        "cover"
     )
 
-    event["cover_url"] = image_path(
-    event["slug"],
-    cover
+    if cover:
+        event["cover_url"] = image_path(
+            event["slug"],
+            cover
+        )
+    else:
+        event["cover_url"] = None
+
+    event["gallery"] = discover_gallery_images(
+        event["slug"]
     )
-
-    gallery = []
-
-    for photo in event["gallery"]:
-
-        photo = photo.copy()
-
-        filename = find_image(
-            event["slug"],
-            photo["image"]
-            )
-
-        photo["url"] = image_path(
-            event["slug"],
-            filename
-            )
-
-        gallery.append(photo)
-
-    event["gallery"] = gallery
 
     return event
 
@@ -207,3 +194,6 @@ def delete_event(slug):
             save_events(events)
 
             return
+        
+
+

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <h1>Edit Event</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label>Title</label>
+        <input
+            type="text"
+            name="title"
+            value="{{ event.title }}"
+            required
+        >
+
+        <label>Date</label>
+        <input
+            type="text"
+            name="date"
+            value="{{ event.date }}"
+            required
+        >
+
+        <label>Venue</label>
+        <input
+            type="text"
+            name="venue"
+            value="{{ event.venue }}"
+            required
+        >
+
+        <label>Description</label>
+        <textarea
+            name="description"
+            rows="6"
+        >{{ event.description }}</textarea>
+
+        <hr>
+
+        <h2>Current Cover</h2>
+
+        {% if event.cover_url %}
+
+        <img
+            src="{{ url_for('static', filename=event.cover_url) }}"
+            alt="{{ event.title }}"
+            class="admin-cover-preview"
+        >
+
+        {% else %}
+
+        <p>No cover image found.</p>
+
+        {% endif %}
+
+
+        <label>Replace Cover Photo</label>
+
+        <input
+            type="file"
+            name="cover_photo"
+            accept="image/*"
+        >
+
+        <hr>
+
+        <h2>Upload Photos</h2>
+
+        <input
+            type="file"
+            name="photos"
+            multiple
+            accept="image/*"
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+        <a href="{{ url_for('admin.dashboard') }}">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

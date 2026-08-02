@@ -1,42 +1,39 @@
 [
     {
-        "slug": "monday-night-vfw",
         "title": "Monday Night @ VFW",
+        "slug": "monday-night-vfw",
         "date": "July 21, 2026",
         "venue": "VFW Hall",
-        "description": "Weekly beginner-friendly line dancing.",
-
-        "cover_image": "cover",
-
+        "description": "Weekly beginner-friendly line dancing. THIS WAS AN EDIT",
         "gallery": [
             {
-                "image": "1",
-                "caption": "Everyone learning the Electric Slide."
-            },
-            {
-                "image": "2",
+                "url": "images/events/monday-night-vfw/1.png",
                 "caption": ""
             },
             {
-                "image": "3",
+                "url": "images/events/monday-night-vfw/2.png",
                 "caption": ""
             },
             {
-                "image": "4",
+                "url": "images/events/monday-night-vfw/3.jpg",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/4.jpg",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/5.jpg",
                 "caption": ""
             }
         ]
     },
-
     {
         "slug": "chaparral-saloon",
         "title": "Chaparral Saloon",
         "date": "June 18, 2026",
         "venue": "Chaparral",
         "description": "A fun evening of country dancing.",
-
-        "cover_image": "cover",
-
         "gallery": [
             {
                 "image": "1",
@@ -56,16 +53,12 @@
             }
         ]
     },
-
     {
         "slug": "royal-caribbean-cruise",
         "title": "Royal Caribbean Cruise",
         "date": "April 2026",
         "venue": "Royal Caribbean",
         "description": "Line dancing at sea with friends.",
-
-        "cover_image": "cover",
-
         "gallery": [
             {
                 "image": "1",
@@ -85,5 +78,4 @@
             }
         ]
     }
-
 ]

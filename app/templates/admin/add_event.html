@@ -6,19 +6,71 @@
 
     <h1>Add New Event</h1>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
 
-        <label>Title</label>
-        <input type="text" name="title" required>
+        <label for="title">Title</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            required
+        >
 
-        <label>Date</label>
-        <input type="text" name="date" required>
+        <label for="date">Date</label>
+        <input
+            type="date"
+            id="date"
+            name="date"
+            required
+        >
 
-        <label>Venue</label>
-        <input type="text" name="venue" required>
+        <label for="venue">Venue</label>
+        <input
+            type="text"
+            id="venue"
+            name="venue"
+            required
+        >
 
-        <label>Description</label>
-        <textarea name="description" rows="6"></textarea>
+        <label for="description">Description</label>
+        <textarea
+            id="description"
+            name="description"
+            rows="6"
+        ></textarea>
+
+        <hr>
+
+        <h2>Cover Photo</h2>
+
+        <input
+            type="file"
+            id="cover_photo"
+            name="cover_photo"
+            accept="image/*"
+        >
+
+        <p>
+            Choose one image to be used as the event cover.
+        </p>
+
+        <hr>
+
+        <h2>Gallery Photos</h2>
+
+        <input
+            type="file"
+            id="gallery_photos"
+            name="gallery_photos"
+            multiple
+            accept="image/*"
+        >
+
+        <p>
+            Select one or more photos for the event gallery.
+        </p>
+
+        <hr>
 
         <button type="submit">
             Save Event

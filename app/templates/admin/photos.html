@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <h1>{{ event.title }}</h1>
+
+    <h2>Gallery</h2>
+
+    <div class="photo-grid">
+
+            {% for photo in photos %}
+
+            <div class="photo-card">
+
+            <img
+                src="{{ url_for('static', filename=photo) }}"
+                alt="Event Photo"
+            >
+
+            <form
+                action="{{ url_for('admin.delete_photo') }}"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="slug"
+                    value="{{ event.slug }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="photo"
+                    value="{{ photo }}"
+                >
+
+                <button class="delete-btn">
+                    🗑 Delete
+                </button>
+
+            </form>
+
+            </div>
+
+            {% endfor %}
+
+            </div>
+
+    <br>
+
+    <a href="/admin">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+{% endblock %}
