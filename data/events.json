@@ -1,10 +1,10 @@
 [
     {
-        "title": "Monday Night @ VFW",
+        "title": "Line Dancing at VFW Monrovia ",
         "slug": "monday-night-vfw",
-        "date": "July 21, 2026",
+        "date": "Since 7/14/26",
         "venue": "VFW Hall",
-        "description": "Weekly beginner-friendly line dancing. THIS WAS AN EDIT",
+        "description": "Sunday lessons for 3 levels: beginner, improver, and intermediate. 1:30p, 2:30p, and 3:30p.\r\n\r\nMonday Line Dancing Club with lessons from 6:30p - 9:00p.\r\n\r\n2nd and 4th Thursdays with Britt and Jocelyn from 6:00p - 9:00p. Beginners class and Line Dancing Club. ",
         "gallery": [
             {
                 "url": "images/events/monday-night-vfw/1.png",
@@ -23,35 +23,27 @@
                 "caption": ""
             },
             {
-                "url": "images/events/monday-night-vfw/5.jpg",
-                "caption": ""
-            },
-            {
-                "url": "images/events/monday-night-vfw/7.jpg",
-                "caption": ""
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813946/ldjohn/events/monday-night-vfw/1.jpg",
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/1.jpg",
                 "public_id": "ldjohn/events/monday-night-vfw/1",
                 "caption": ""
             },
             {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813947/ldjohn/events/monday-night-vfw/2.jpg",
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/2.jpg",
                 "public_id": "ldjohn/events/monday-night-vfw/2",
                 "caption": ""
             }
         ],
         "cover": {
-            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813945/ldjohn/events/monday-night-vfw/cover.jpg",
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785850507/ldjohn/events/monday-night-vfw/cover.png",
             "public_id": "ldjohn/events/monday-night-vfw/cover"
         }
     },
     {
         "slug": "chaparral-saloon",
-        "title": "Chaparral Saloon",
-        "date": "June 18, 2026",
-        "venue": "Chaparral",
-        "description": "A fun evening of country dancing.",
+        "title": "Line Dancing Pop-ups",
+        "date": "Since 2025",
+        "venue": "Chaparral 300, Chino Hills & Route 66 Roadhouse, Duarte",
+        "description": "While I'm based primarily in Monrovia, I've been invited to bring line dancing at other venues as Saturday Pop-Ups.",
         "gallery": [
             {
                 "image": "1",
@@ -68,15 +60,84 @@
             {
                 "image": "3",
                 "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856869/ldjohn/events/chaparral-saloon/1.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/1",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856869/ldjohn/events/chaparral-saloon/2.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/2",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856870/ldjohn/events/chaparral-saloon/3.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/3",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856980/ldjohn/events/chaparral-saloon/4.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/4",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856981/ldjohn/events/chaparral-saloon/5.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/5",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856982/ldjohn/events/chaparral-saloon/6.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/6",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856983/ldjohn/events/chaparral-saloon/7.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/7",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785860936/ldjohn/events/chaparral-saloon/8.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/8",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785860937/ldjohn/events/chaparral-saloon/9.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/9",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785860937/ldjohn/events/chaparral-saloon/10.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/10",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785860938/ldjohn/events/chaparral-saloon/11.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/11",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785860938/ldjohn/events/chaparral-saloon/12.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/12",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785860939/ldjohn/events/chaparral-saloon/13.jpg",
+                "public_id": "ldjohn/events/chaparral-saloon/13",
+                "caption": ""
             }
-        ]
+        ],
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856511/ldjohn/events/chaparral-saloon/cover.png",
+            "public_id": "ldjohn/events/chaparral-saloon/cover"
+        }
     },
     {
         "slug": "royal-caribbean-cruise",
-        "title": "Royal Caribbean Cruise",
-        "date": "April 2026",
-        "venue": "Royal Caribbean",
-        "description": "Line dancing at sea with friends.",
+        "title": "Line Dancing on Cruises",
+        "date": "Since 2024",
+        "venue": "Royal Caribbean, Princess, and Carnival",
+        "description": "I teach line dancing at sea to private groups and friends.  We have our own reserved venues, times, and days during our cruises for line dancing. I have taught aboard Royal Caribbean, Princess, and Carnival. ",
         "gallery": [
             {
                 "image": "1",
@@ -92,6 +153,33 @@
             },
             {
                 "image": "4",
+                "caption": ""
+            }
+        ],
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785849940/ldjohn/events/royal-caribbean-cruise/cover.jpg",
+            "public_id": "ldjohn/events/royal-caribbean-cruise/cover"
+        }
+    },
+    {
+        "title": "Lessons and Playlist",
+        "slug": "lessons-and-playlist",
+        "date": "2026",
+        "venue": "VFW Hall",
+        "description": "What am I teaching and is being requested at your line dancing club?  Here's the place to find it. ",
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785825953/ldjohn/events/lessons-and-playlist/cover.png",
+            "public_id": "ldjohn/events/lessons-and-playlist/cover"
+        },
+        "gallery": [
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785825954/ldjohn/events/lessons-and-playlist/1.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/1",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785861147/ldjohn/events/lessons-and-playlist/2.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/2",
                 "caption": ""
             }
         ]

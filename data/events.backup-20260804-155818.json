@@ -1,0 +1,99 @@
+[
+    {
+        "title": "Monday Night @ VFW",
+        "slug": "monday-night-vfw",
+        "date": "July 21, 2026",
+        "venue": "VFW Hall",
+        "description": "Weekly beginner-friendly line dancing. THIS WAS AN EDIT",
+        "gallery": [
+            {
+                "url": "images/events/monday-night-vfw/1.png",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/2.png",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/3.jpg",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/4.jpg",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/5.jpg",
+                "caption": ""
+            },
+            {
+                "url": "images/events/monday-night-vfw/7.jpg",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813946/ldjohn/events/monday-night-vfw/1.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/1",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813947/ldjohn/events/monday-night-vfw/2.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/2",
+                "caption": ""
+            }
+        ],
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813945/ldjohn/events/monday-night-vfw/cover.jpg",
+            "public_id": "ldjohn/events/monday-night-vfw/cover"
+        }
+    },
+    {
+        "slug": "chaparral-saloon",
+        "title": "Chaparral Saloon",
+        "date": "June 18, 2026",
+        "venue": "Chaparral",
+        "description": "A fun evening of country dancing.",
+        "gallery": [
+            {
+                "image": "1",
+                "caption": ""
+            },
+            {
+                "image": "2",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            }
+        ]
+    },
+    {
+        "slug": "royal-caribbean-cruise",
+        "title": "Royal Caribbean Cruise",
+        "date": "April 2026",
+        "venue": "Royal Caribbean",
+        "description": "Line dancing at sea with friends.",
+        "gallery": [
+            {
+                "image": "1",
+                "caption": ""
+            },
+            {
+                "image": "2",
+                "caption": ""
+            },
+            {
+                "image": "3",
+                "caption": ""
+            },
+            {
+                "image": "4",
+                "caption": ""
+            }
+        ]
+    }
+]
