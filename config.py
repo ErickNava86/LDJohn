@@ -1,7 +1,15 @@
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-change-before-deploy")
-    ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "john")
-    ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "dance2026")
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
+    CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
+    CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
+    CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")

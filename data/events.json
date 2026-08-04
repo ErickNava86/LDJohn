@@ -29,8 +29,22 @@
             {
                 "url": "images/events/monday-night-vfw/7.jpg",
                 "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813946/ldjohn/events/monday-night-vfw/1.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/1",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813947/ldjohn/events/monday-night-vfw/2.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/2",
+                "caption": ""
             }
-        ]
+        ],
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785813945/ldjohn/events/monday-night-vfw/cover.jpg",
+            "public_id": "ldjohn/events/monday-night-vfw/cover"
+        }
     },
     {
         "slug": "chaparral-saloon",

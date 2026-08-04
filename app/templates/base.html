@@ -8,7 +8,7 @@
 
     <title>LD John</title>
 
-    <link rel="stylesheet"href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"href="{{ versioned_static('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
 
 
@@ -22,8 +22,7 @@
 
     <div class="logo">
 
-        <img src="{{ url_for('static',
-            filename='images/branding/LD-Icon.png') }}"
+        <img src="{{ versioned_static('images/branding/LD-Icon.png') }}"
             alt="Line Dancing John">
 
     </div>
@@ -58,8 +57,6 @@
     <a href="{{ url_for('admin.login') }}">Admin</a>
 </footer>
 
-</footer>
-
 
 <div id="lightbox">
 
@@ -77,8 +74,7 @@
 
 </div>
 
-<script src="{{ url_for('static',
-filename='js/script.js') }}"></script>
+<script src="{{ versioned_static('js/script.js') }}"></script>
 
 </body>
 

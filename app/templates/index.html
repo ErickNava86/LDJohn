@@ -10,7 +10,7 @@
     {% for flyer in local_flyers %}
 
         <img
-            src="{{ url_for('static', filename='images/flyers/local/' ~ flyer) }}"
+            src="{{ versioned_static('images/flyers/local/' ~ flyer) }}"
             class="flyer"
             alt="Event Flyer">
 
@@ -24,12 +24,12 @@
     <h2>Upcoming Cruises</h2>
 
     <img
-        src="{{ url_for('static', filename='images/heroes/2.png') }}">
+        src="{{ versioned_static('images/heroes/2.png') }}">
 
     {% for flyer in cruise_flyers %}
 
         <img
-            src="{{ url_for('static', filename='images/flyers/cruise/' ~ flyer) }}"
+            src="{{ versioned_static('images/flyers/cruise/' ~ flyer) }}"
             class="flyer"
             alt="Cruise Flyer">
 
@@ -48,7 +48,7 @@
 
             <img
                 class="gallery-image"
-                src="{{ url_for('static', filename=photo.url) }}"
+                src="{{ image_src(photo.url) }}"
                 alt="Gallery Image">
 
         {% endfor %}
@@ -78,19 +78,19 @@
 
         <a href="https://www.facebook.com/CrewzenJNguyen">
             <img
-                src="{{ url_for('static', filename='images/social/facebook.png') }}"
+                src="{{ versioned_static('images/social/facebook.png') }}"
                 class="social-logo">
         </a>
 
         <a href="https://www.instagram.com/line_dancing_john/">
             <img
-                src="{{ url_for('static', filename='images/social/instagram.png') }}"
+                src="{{ versioned_static('images/social/instagram.png') }}"
                 class="social-logo">
         </a>
 
         <a href="https://www.yelp.com/biz/line-dancing-john-monrovia-2">
             <img
-                src="{{ url_for('static', filename='images/social/yelp.png') }}"
+                src="{{ versioned_static('images/social/yelp.png') }}"
                 class="social-logo">
         </a>
 
@@ -98,7 +98,7 @@
 
     <div class="meet-me" id="follow">
         <img
-            src="{{ url_for('static', filename='images/heroes/3.png') }}">
+            src="{{ versioned_static('images/heroes/3.png') }}">
     </div>
 
 </section>
@@ -118,7 +118,7 @@
 
     <div class="meet-me">
         <img
-            src="{{ url_for('static', filename='images/heroes/1.jpg') }}"
+            src="{{ versioned_static('images/heroes/1.jpg') }}"
             alt="Line Dancing John">
     </div>
 

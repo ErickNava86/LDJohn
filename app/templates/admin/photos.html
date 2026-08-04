@@ -10,12 +10,12 @@
 
     <div class="photo-grid">
 
-            {% for photo in photos %}
+        {% for photo in photos %}
 
-            <div class="photo-card">
+        <div class="photo-card">
 
             <img
-                src="{{ url_for('static', filename=photo) }}"
+                src="{{ image_src(photo.url) }}"
                 alt="Event Photo"
             >
 
@@ -32,25 +32,29 @@
 
                 <input
                     type="hidden"
-                    name="photo"
-                    value="{{ photo }}"
+                    name="public_id"
+                    value="{{ photo.public_id }}"
                 >
 
-                <button class="delete-btn">
+                <button class="delete-btn" type="submit">
                     🗑 Delete
                 </button>
 
             </form>
 
-            </div>
+        </div>
 
-            {% endfor %}
+        {% else %}
 
-            </div>
+        <p>No gallery photos have been uploaded yet.</p>
+
+        {% endfor %}
+
+    </div>
 
     <br>
 
-    <a href="/admin">
+    <a href="{{ url_for('admin.dashboard') }}">
         ← Back to Dashboard
     </a>
 

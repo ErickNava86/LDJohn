@@ -45,7 +45,7 @@
         {% if event.cover_url %}
 
         <img
-            src="{{ url_for('static', filename=event.cover_url) }}"
+            src="{{ image_src(event.cover_url) }}"
             alt="{{ event.title }}"
             class="admin-cover-preview"
         >

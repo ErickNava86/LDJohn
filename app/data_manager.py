@@ -1,199 +1,189 @@
 import json
 import os
 import random
+from copy import deepcopy
+from typing import Any
+
+from .cloudinary_manager import upload_events_data
+
+EVENTS_FILE = "data/events.json"
+VALID_EXTENSIONS = (".png", ".jpg", ".jpeg", ".webp")
+
 
 # ---------- EVENTS ----------
 
-def load_events():
-    with open("data/events.json", "r") as file:
+def load_events() -> list[dict[str, Any]]:
+    with open(EVENTS_FILE, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
-def save_events(events):
-    with open("data/events.json", "w") as file:
+def save_events(events: list[dict[str, Any]]) -> None:
+    # Persist remotely first. If this fails, the admin request fails instead of
+    # pretending a temporary Render-only change was safely stored.
+    upload_events_data(events)
+
+    with open(EVENTS_FILE, "w", encoding="utf-8") as file:
         json.dump(events, file, indent=4)
 
 
-# ---------- IMAGE HELPERS ----------
+def replace_local_events(events: list[dict[str, Any]]) -> None:
+    """Write metadata locally without uploading it again during startup sync."""
+    with open(EVENTS_FILE, "w", encoding="utf-8") as file:
+        json.dump(events, file, indent=4)
 
-def get_images(folder):
-    """
-    Returns a sorted list of image filenames in a folder.
-    """
 
-    valid_extensions = (".png", ".jpg", ".jpeg", ".webp")
+# ---------- STATIC IMAGE HELPERS ----------
+
+def get_images(folder: str) -> list[str]:
+    if not os.path.isdir(folder):
+        return []
 
     return sorted(
-        file
-        for file in os.listdir(folder)
-        if file.lower().endswith(valid_extensions)
-        and not file.startswith(".")
+        filename
+        for filename in os.listdir(folder)
+        if filename.lower().endswith(VALID_EXTENSIONS)
+        and not filename.startswith(".")
     )
 
-def find_image(slug, image_name):
-    """
-    Finds an image regardless of file extension.
-    """
 
+def get_local_flyers() -> list[str]:
+    return get_images("app/static/images/flyers/local")
+
+
+def get_cruise_flyers() -> list[str]:
+    return get_images("app/static/images/flyers/cruise")
+
+
+def image_path(slug: str, filename: str) -> str:
+    return f"images/events/{slug}/{filename}"
+
+
+def find_local_cover(slug: str) -> str | None:
     folder = f"app/static/images/events/{slug}"
 
-    valid_extensions = (".png", ".jpg", ".jpeg", ".webp")
+    if not os.path.isdir(folder):
+        return None
 
-    for extension in valid_extensions:
-
-        filename = image_name + extension
-
+    for extension in VALID_EXTENSIONS:
+        filename = "cover" + extension
         if os.path.exists(os.path.join(folder, filename)):
-            return filename
+            return image_path(slug, filename)
 
     return None
 
 
-def get_local_flyers():
-    return get_images("app/static/images/flyers/local")
-
-
-def get_cruise_flyers():
-    return get_images("app/static/images/flyers/cruise")
-
-
-def image_path(slug, filename):
-    return f"images/events/{slug}/{filename}"
-
-
-def prepare_event(event):
-
-    event = event.copy()
-
-    cover = find_image(
-        event["slug"],
-        "cover"
-    )
-
-    if cover:
-        event["cover_url"] = image_path(
-            event["slug"],
-            cover
-        )
-    else:
-        event["cover_url"] = None
-
-    event["gallery"] = discover_gallery_images(
-        event["slug"]
-    )
-
-    return event
-
-# -------- MAIN GALLERY HELPERS -----------
-
-def discover_gallery_images(slug):
-
+def discover_local_gallery(slug: str) -> list[dict[str, str]]:
     folder = f"app/static/images/events/{slug}"
+
+    if not os.path.isdir(folder):
+        return []
 
     gallery = []
 
-    valid_extensions = (".png", ".jpg", ".jpeg", ".webp")
-
-    for file in os.listdir(folder):
-
-        if file.startswith("."):
-            continue
-
-        if file.startswith("cover"):
-            continue
-
-        if not file.lower().endswith(valid_extensions):
+    for filename in get_images(folder):
+        if filename.startswith("cover"):
             continue
 
         gallery.append({
-            "url": image_path(slug, file),
-            "caption": ""
+            "url": image_path(slug, filename),
+            "public_id": "",
+            "caption": "",
         })
-
-    gallery.sort(key=lambda image: image["url"])
 
     return gallery
 
 
-def get_all_gallery_images():
+# ---------- EVENT PRESENTATION ----------
 
+def normalize_gallery(event: dict[str, Any]) -> list[dict[str, str]]:
+    gallery = []
+
+    for photo in event.get("gallery", []):
+        if not isinstance(photo, dict):
+            continue
+
+        # Current Cloudinary/local URL schema.
+        if photo.get("url"):
+            gallery.append({
+                "url": photo["url"],
+                "public_id": photo.get("public_id", ""),
+                "caption": photo.get("caption", ""),
+            })
+
+    if gallery:
+        return gallery
+
+    # Backward-compatible fallback for events not migrated yet.
+    return discover_local_gallery(event["slug"])
+
+
+def prepare_event(event: dict[str, Any]) -> dict[str, Any]:
+    prepared = deepcopy(event)
+
+    cover = prepared.get("cover")
+    if isinstance(cover, dict) and cover.get("url"):
+        prepared["cover_url"] = cover["url"]
+    else:
+        prepared["cover_url"] = find_local_cover(prepared["slug"])
+
+    prepared["gallery"] = normalize_gallery(prepared)
+    return prepared
+
+
+def get_all_gallery_images() -> list[dict[str, str]]:
     photos = []
 
-    events = load_events()
-
-    for event in events:
-        photos.extend(
-            discover_gallery_images(event["slug"])
-        )
+    for event in get_all_events():
+        photos.extend(event["gallery"])
 
     return photos
 
 
-def get_homepage_gallery(count=9):
-
+def get_homepage_gallery(count: int = 9) -> list[dict[str, str]]:
     photos = get_all_gallery_images()
-
     random.shuffle(photos)
-
     return photos[:count]
+
 
 # ---------- CRUD ----------
 
-def get_all_events():
-
-    events = load_events()
-
-    return [prepare_event(event) for event in events]
+def get_all_events() -> list[dict[str, Any]]:
+    return [prepare_event(event) for event in load_events()]
 
 
-def get_event(slug):
-
-    events = load_events()
-
-    for event in events:
+def get_event(slug: str) -> dict[str, Any] | None:
+    for event in load_events():
         if event["slug"] == slug:
             return prepare_event(event)
 
     return None
 
 
-def add_event(new_event):
+def get_event_record(slug: str) -> dict[str, Any] | None:
+    for event in load_events():
+        if event["slug"] == slug:
+            return deepcopy(event)
 
+    return None
+
+
+def add_event(new_event: dict[str, Any]) -> None:
     events = load_events()
-
     events.append(new_event)
-
     save_events(events)
 
 
-def update_event(slug, updated_event):
-
+def update_event(slug: str, updated_event: dict[str, Any]) -> None:
     events = load_events()
 
-    for i, event in enumerate(events):
-
+    for index, event in enumerate(events):
         if event["slug"] == slug:
-
-            events[i] = updated_event
-
+            events[index] = updated_event
             save_events(events)
-
             return
 
 
-def delete_event(slug):
-
+def delete_event(slug: str) -> None:
     events = load_events()
-
-    for i, event in enumerate(events):
-
-        if event["slug"] == slug:
-
-            del events[i]
-
-            save_events(events)
-
-            return
-        
-
-
+    remaining = [event for event in events if event["slug"] != slug]
+    save_events(remaining)

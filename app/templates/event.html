@@ -25,7 +25,7 @@
 <div class="event-cover">
 
     <img
-        src="{{ url_for('static', filename=event.cover_url) }}"
+        src="{{ image_src(event.cover_url) }}"
         alt="{{ event.title }}">
 
 </div>
@@ -38,7 +38,7 @@
 
         <img
             class="gallery-image event-photo"
-            src="{{ url_for('static', filename=photo.url) }}"
+            src="{{ image_src(photo.url) }}"
             alt="{{ event.title }}"
             data-caption="{{ photo.caption }}">
 
