@@ -18,28 +18,26 @@
 
 <div class="page">
 
-<header>
+<header class="site-header">
 
-    <div class="logo">
-
-        <img src="{{ versioned_static('images/branding/LD-Icon.png') }}"
-            alt="Line Dancing John">
-
+    <div class="header-banner">
+        <img
+            src="{{ url_for('static', filename='images/branding/hero-hero.png') }}"
+            alt="Line Dancing John"
+        >
     </div>
 
-    <nav>
-
-        <a href="/">Home</a>
+    <nav class="main-nav">
+        <a href="{{ url_for('home') }}">Home</a>
         <a href="{{ url_for('gallery') }}">Gallery</a>
-        <a href="/#follow">Follow</a>
-        <a href="/#contact">Contact</a>
+        <a href="{{ url_for('home') }}#follow">Follow</a>
+        <a href="{{ url_for('home') }}#contact">Contact</a>
 
-        {% if session.get("admin_logged_in") %}
+        {% if session.get('admin_logged_in') %}
         <form action="{{ url_for('admin.logout') }}" method="POST" class="logout-form">
-            <button type="submit">Logout</button>
+            <button type="submit" class="logout-link">Logout</button>
         </form>
         {% endif %}
-
     </nav>
 
 </header>
