@@ -53,78 +53,29 @@ def get_local_flyers() -> list[str]:
 def get_cruise_flyers() -> list[str]:
     return get_images("app/static/images/flyers/cruise")
 
-
-def image_path(slug: str, filename: str) -> str:
-    return f"images/events/{slug}/{filename}"
-
-
-def find_local_cover(slug: str) -> str | None:
-    folder = f"app/static/images/events/{slug}"
-
-    if not os.path.isdir(folder):
-        return None
-
-    for extension in VALID_EXTENSIONS:
-        filename = "cover" + extension
-        if os.path.exists(os.path.join(folder, filename)):
-            return image_path(slug, filename)
-
-    return None
-
-
-def discover_local_gallery(slug: str) -> list[dict[str, str]]:
-    folder = f"app/static/images/events/{slug}"
-
-    if not os.path.isdir(folder):
-        return []
-
-    gallery = []
-
-    for filename in get_images(folder):
-        if filename.startswith("cover"):
-            continue
-
-        gallery.append({
-            "url": image_path(slug, filename),
-            "public_id": "",
-            "caption": "",
-        })
-
-    return gallery
-
-
 # ---------- EVENT PRESENTATION ----------
 
 def normalize_gallery(event: dict[str, Any]) -> list[dict[str, str]]:
     gallery = []
 
     for photo in event.get("gallery", []):
-        if not isinstance(photo, dict):
+        if not isinstance(photo, dict) or not photo.get("url"):
             continue
 
-        # Current Cloudinary/local URL schema.
-        if photo.get("url"):
-            gallery.append({
-                "url": photo["url"],
-                "public_id": photo.get("public_id", ""),
-                "caption": photo.get("caption", ""),
-            })
+        gallery.append({
+            "url": photo["url"],
+            "public_id": photo.get("public_id", ""),
+            "caption": photo.get("caption", ""),
+        })
 
-    if gallery:
-        return gallery
-
-    # Backward-compatible fallback for events not migrated yet.
-    return discover_local_gallery(event["slug"])
+    return gallery
 
 
 def prepare_event(event: dict[str, Any]) -> dict[str, Any]:
     prepared = deepcopy(event)
 
-    cover = prepared.get("cover")
-    if isinstance(cover, dict) and cover.get("url"):
-        prepared["cover_url"] = cover["url"]
-    else:
-        prepared["cover_url"] = find_local_cover(prepared["slug"])
+    cover = prepared.get("cover", {})
+    prepared["cover_url"] = cover.get("url")
 
     prepared["gallery"] = normalize_gallery(prepared)
     return prepared

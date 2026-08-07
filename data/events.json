@@ -7,22 +7,6 @@
         "description": "Sunday lessons for 3 levels: beginner, improver, and intermediate. 1:30p, 2:30p, and 3:30p.\r\n\r\nMonday Line Dancing Club with lessons from 6:30p - 9:00p.\r\n\r\n2nd and 4th Thursdays with Britt and Jocelyn from 6:00p - 9:00p. Beginners class and Line Dancing Club. ",
         "gallery": [
             {
-                "url": "images/events/monday-night-vfw/1.png",
-                "caption": ""
-            },
-            {
-                "url": "images/events/monday-night-vfw/2.png",
-                "caption": ""
-            },
-            {
-                "url": "images/events/monday-night-vfw/3.jpg",
-                "caption": ""
-            },
-            {
-                "url": "images/events/monday-night-vfw/4.jpg",
-                "caption": ""
-            },
-            {
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/1.jpg",
                 "public_id": "ldjohn/events/monday-night-vfw/1",
                 "caption": ""
@@ -30,6 +14,31 @@
             {
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/2.jpg",
                 "public_id": "ldjohn/events/monday-night-vfw/2",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952143/ldjohn/events/monday-night-vfw/3.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/3",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952144/ldjohn/events/monday-night-vfw/4.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/4",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/5.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/5",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/6.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/6",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952146/ldjohn/events/monday-night-vfw/7.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/7",
                 "caption": ""
             }
         ],
@@ -45,22 +54,6 @@
         "venue": "Chaparral 300, Chino Hills & Route 66 Roadhouse, Duarte",
         "description": "While I'm based primarily in Monrovia, I've been invited to bring line dancing at other venues as Saturday Pop-Ups.",
         "gallery": [
-            {
-                "image": "1",
-                "caption": ""
-            },
-            {
-                "image": "2",
-                "caption": ""
-            },
-            {
-                "image": "3",
-                "caption": ""
-            },
-            {
-                "image": "3",
-                "caption": ""
-            },
             {
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856869/ldjohn/events/chaparral-saloon/1.jpg",
                 "public_id": "ldjohn/events/chaparral-saloon/1",
@@ -140,19 +133,23 @@
         "description": "I teach line dancing at sea to private groups and friends.  We have our own reserved venues, times, and days during our cruises for line dancing. I have taught aboard Royal Caribbean, Princess, and Carnival. ",
         "gallery": [
             {
-                "image": "1",
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786105313/ldjohn/events/royal-caribbean-cruise/1.jpg",
+                "public_id": "ldjohn/events/royal-caribbean-cruise/1",
                 "caption": ""
             },
             {
-                "image": "2",
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786105314/ldjohn/events/royal-caribbean-cruise/2.jpg",
+                "public_id": "ldjohn/events/royal-caribbean-cruise/2",
                 "caption": ""
             },
             {
-                "image": "3",
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786105315/ldjohn/events/royal-caribbean-cruise/3.jpg",
+                "public_id": "ldjohn/events/royal-caribbean-cruise/3",
                 "caption": ""
             },
             {
-                "image": "4",
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786105315/ldjohn/events/royal-caribbean-cruise/4.jpg",
+                "public_id": "ldjohn/events/royal-caribbean-cruise/4",
                 "caption": ""
             }
         ],
