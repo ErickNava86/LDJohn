@@ -29,9 +29,15 @@ body{
 
 /* ---------- HEADER ---------- */
 
+header{
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+}
+
 .site-header {
     width: 100%;
     background: #000;
+    border-radius: 12px 12px 12px 12px;
 }
 
 .header-banner {
@@ -46,14 +52,16 @@ body{
     height: 100%;
     object-fit: cover;
     object-position: center 35%;
+    border-radius: 12px;   
 }
+
 
 .main-nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 28px;
-    padding: 8px 15px 12px;
+    gap: 40px;
+    padding: 8px 8px 15px 12px;
     background: #000;
 }
 
@@ -898,7 +906,6 @@ footer{
     .header-banner img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
         object-position: center;
     }
 
@@ -975,6 +982,16 @@ footer{
     height: auto;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* -----------EVENT PHONE --------------*/
+
+    .event-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px 8px 0 0;
     }
 
     /* ---------- ADMIN PHONE ---------- */
