@@ -1,0 +1,20 @@
+[
+    {
+        "id": "local-events",
+        "title": "Upcoming Local Events",
+        "type": "local_flyers",
+        "images": []
+    },
+    {
+        "id": "cruises",
+        "title": "Upcoming Cruises",
+        "type": "cruise_flyers",
+        "images": []
+    },
+    {
+        "id": "gallery",
+        "title": "Gallery",
+        "type": "gallery",
+        "images": []
+    }
+]

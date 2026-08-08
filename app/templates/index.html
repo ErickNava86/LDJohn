@@ -2,73 +2,42 @@
 
 {% block content %}
 
+{% for section in home_sections %}
+<section id="home-{{ section.id }}" class="home-managed-section">
+    <h2>{{ section.title }}</h2>
 
-<section id="events">
-
-    <h2>Upcoming Local Events</h2>
-
-    {% for flyer in local_flyers %}
-
-        <img
-            src="{{ versioned_static('images/flyers/local/' ~ flyer) }}"
-            class="flyer"
-            alt="Event Flyer">
-
-    {% endfor %}
-
-</section>
-
-
-<section id="cruises">
-
-    <h2>Upcoming Cruises</h2>
-
-    <img
-        src="{{ versioned_static('images/heroes/2.png') }}">
-
-    {% for flyer in cruise_flyers %}
-
-        <img
-            src="{{ versioned_static('images/flyers/cruise/' ~ flyer) }}"
-            class="flyer"
-            alt="Cruise Flyer">
-
-    {% endfor %}
-
-</section>
-
-
-<section id="gallery">
-
-    <h2>GALLERY</h2>
-
-    <div class="gallery-grid">
-
-        {% for photo in homepage_gallery %}
-
-            <img
-                class="gallery-image"
-                src="{{ image_src(photo.url) }}"
-                alt="Gallery Image">
-
+    {% if section.type == "local_flyers" %}
+        {% for flyer in local_flyers %}
+            <img src="{{ versioned_static('images/flyers/local/' ~ flyer) }}" class="flyer" alt="{{ section.title }}">
         {% endfor %}
 
-    </div>
+    {% elif section.type == "cruise_flyers" %}
+        <img src="{{ versioned_static('images/heroes/2.png') }}" alt="Cruise">
+        {% for flyer in cruise_flyers %}
+            <img src="{{ versioned_static('images/flyers/cruise/' ~ flyer) }}" class="flyer" alt="{{ section.title }}">
+        {% endfor %}
 
-    <div class="gallery-link">
+    {% elif section.type == "gallery" %}
+        <div class="gallery-grid">
+            {% for photo in homepage_gallery %}
+                <img class="gallery-image" src="{{ image_src(photo.url) }}" alt="Gallery Image">
+            {% endfor %}
+        </div>
+        <div class="gallery-link">
+            <a href="{{ url_for('gallery') }}" class="view-gallery-button">
+                View Full Gallery <span>→</span>
+            </a>
+        </div>
 
-        <a href="{{ url_for('gallery') }}" class="view-gallery-button">
-
-        View Full Gallery
-
-        <span>→</span>
-
-        </a>
-
-    </div>
-
+    {% elif section.type == "manual" %}
+        <div class="home-manual-images">
+            {% for image in section.images %}
+                <img src="{{ image.url }}" class="flyer" alt="{{ section.title }}">
+            {% endfor %}
+        </div>
+    {% endif %}
 </section>
-
+{% endfor %}
 
 <section id="follow">
 

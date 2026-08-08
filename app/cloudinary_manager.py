@@ -9,6 +9,7 @@ import cloudinary.uploader
 
 EVENTS_DATA_PUBLIC_ID = "ldjohn/data/events.json"
 LESSONS_DATA_PUBLIC_ID = "ldjohn/data/lessons.json"
+HOME_DATA_PUBLIC_ID = "ldjohn/data/home.json"
 
 
 def configure_cloudinary(config: dict[str, Any]) -> None:
@@ -143,4 +144,46 @@ def download_lessons_data() -> list[dict[str, Any]] | None:
         # the bundled lessons.json remains the fallback.
         return None
 
+def upload_home_data(sections: list[dict[str, Any]]) -> None:
+    """Persist homepage section metadata as a Cloudinary raw asset."""
+    if not cloudinary_is_configured():
+        return
+
+    fd, temp_path = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+
+    try:
+        with open(temp_path, "w", encoding="utf-8") as file:
+            json.dump(sections, file, indent=4)
+
+        cloudinary.uploader.upload(
+            temp_path,
+            public_id=HOME_DATA_PUBLIC_ID,
+            resource_type="raw",
+            overwrite=True,
+            invalidate=True,
+        )
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+
+
+def download_home_data() -> list[dict[str, Any]] | None:
+    """Fetch the latest persisted homepage metadata, or None if none exists yet."""
+    if not cloudinary_is_configured():
+        return None
+
+    try:
+        resource = cloudinary.api.resource(
+            HOME_DATA_PUBLIC_ID,
+            resource_type="raw",
+        )
+        secure_url = resource["secure_url"]
+
+        from urllib.request import urlopen
+
+        with urlopen(secure_url, timeout=15) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except Exception:
+        return None
 

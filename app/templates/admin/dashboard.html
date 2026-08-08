@@ -1,52 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="admin-dashboard">
-
+<div class="admin-dashboard admin-hub">
     <h1>LDJ Control Panel</h1>
+    <p>Choose a section to manage.</p>
 
-    <a href="/admin/add" class="add-event-btn">
-        ➕ Add New Event
-    </a>
+    <div class="admin-hub-grid">
+        <a href="{{ url_for('admin.home_page') }}" class="admin-hub-card">
+            <h2>Home</h2>
+            <p>Manage homepage sections and images</p>
+        </a>
 
-    {% for event in events %}
+        <a href="{{ url_for('admin.events_dashboard') }}" class="admin-hub-card">
+            <h2>Events</h2>
+            <p>Add, edit, delete, and manage event photos</p>
+        </a>
 
-    <div class="admin-event-card">
-
-        <img src="{{ image_src(event.cover_url) }}">
-
-        <div class="admin-event-info">
-
-            <h2>{{ event.title }}</h2>
-
-            <p>📍 {{ event.venue }}</p>
-
-            <p>📅 {{ event.date }}</p>
-
-        </div>
-
-        <div class="admin-buttons">
-
-            <a href="/admin/edit/{{ event.slug }}">✏ Edit</a>
-
-            <a href="/admin/photos/{{ event.slug }}">📸 Photos</a>
-
-            <form
-                action="{{ url_for('admin.delete_event_page', slug=event.slug) }}"
-                method="POST"
->       
-                <button type="submit">
-                    🗑 Delete
-                </button>
-            </form>
-
-        </div>
-
+        <a href="{{ url_for('admin.lessons_page') }}" class="admin-hub-card">
+            <h2>Lessons</h2>
+            <p>Upload, reorder, and delete lesson flyers</p>
+        </a>
     </div>
-
-    {% endfor %}
-
 </div>
-
 {% endblock %}

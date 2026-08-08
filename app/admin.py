@@ -21,6 +21,14 @@ from .data_manager import (
     get_event_record,
     load_events,
     update_event,
+    add_home_section,
+    delete_home_image,
+    delete_home_section,
+    get_home_section,
+    load_home,
+    move_home_image,
+    move_home_section,
+    update_home_section,
     add_lesson,
     delete_lesson,
     load_lessons,
@@ -327,6 +335,125 @@ def delete_event_page(slug):
     return redirect(
         url_for("admin.events_dashboard")
     )
+
+
+# ---------- HOME MANAGEMENT ----------
+
+@admin.route("/admin/home")
+@admin_required
+def home_page():
+    return render_template(
+        "admin/home.html",
+        sections=load_home(),
+    )
+
+
+@admin.route("/admin/home/section/add", methods=["POST"])
+@admin_required
+def add_home_section_page():
+    title = request.form.get("title", "").strip()
+    if not title:
+        return redirect(url_for("admin.home_page"))
+
+    base_id = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-") or "section"
+    existing = {section.get("id") for section in load_home()}
+    section_id = base_id
+    count = 2
+    while section_id in existing:
+        section_id = f"{base_id}-{count}"
+        count += 1
+
+    add_home_section({
+        "id": section_id,
+        "title": title,
+        "type": "manual",
+        "images": [],
+    })
+    return redirect(url_for("admin.home_page"))
+
+
+@admin.route("/admin/home/section/<section_id>/rename", methods=["POST"])
+@admin_required
+def rename_home_section_page(section_id):
+    section = get_home_section(section_id)
+    if section is not None:
+        title = request.form.get("title", "").strip()
+        if title:
+            section["title"] = title
+            update_home_section(section_id, section)
+    return redirect(url_for("admin.home_page"))
+
+
+@admin.route("/admin/home/section/<section_id>/move", methods=["POST"])
+@admin_required
+def move_home_section_page(section_id):
+    move_home_section(section_id, request.form.get("direction", ""))
+    return redirect(url_for("admin.home_page"))
+
+
+@admin.route("/admin/home/section/<section_id>/delete", methods=["POST"])
+@admin_required
+def delete_home_section_page(section_id):
+    section = get_home_section(section_id)
+    if section and section.get("type") == "manual":
+        removed = delete_home_section(section_id)
+        if removed:
+            for image in removed.get("images", []):
+                delete_image(image.get("public_id"))
+    return redirect(url_for("admin.home_page"))
+
+
+@admin.route("/admin/home/section/<section_id>/images", methods=["POST"])
+@admin_required
+def upload_home_images_page(section_id):
+    section = get_home_section(section_id)
+    if section is None or section.get("type") != "manual":
+        return redirect(url_for("admin.home_page"))
+
+    images = section.setdefault("images", [])
+    used_numbers = set()
+    for image in images:
+        final_part = image.get("public_id", "").rsplit("/", 1)[-1]
+        if final_part.isdigit():
+            used_numbers.add(int(final_part))
+
+    image_number = 1
+    for photo in request.files.getlist("home_photos"):
+        if not photo or not photo.filename:
+            continue
+        while image_number in used_numbers:
+            image_number += 1
+        uploaded = upload_image(
+            photo,
+            f"ldjohn/home/{section_id}/{image_number}",
+        )
+        images.append(uploaded)
+        used_numbers.add(image_number)
+        image_number += 1
+
+    update_home_section(section_id, section)
+    return redirect(url_for("admin.home_page"))
+
+
+@admin.route("/admin/home/image/delete", methods=["POST"])
+@admin_required
+def delete_home_image_page():
+    section_id = request.form["section_id"]
+    public_id = request.form["public_id"]
+    delete_home_image(section_id, public_id)
+    delete_image(public_id)
+    return redirect(url_for("admin.home_page"))
+
+
+@admin.route("/admin/home/image/move", methods=["POST"])
+@admin_required
+def move_home_image_page():
+    move_home_image(
+        request.form["section_id"],
+        request.form["public_id"],
+        request.form["direction"],
+    )
+    return redirect(url_for("admin.home_page"))
 
 
 # ---------- LESSONS ----------

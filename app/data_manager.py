@@ -7,10 +7,12 @@ from typing import Any
 from .cloudinary_manager import (
     upload_events_data,
     upload_lessons_data,
+    upload_home_data,
 )
 
 EVENTS_FILE = "data/events.json"
 LESSONS_FILE = "data/lessons.json"
+HOME_FILE = "data/home.json"
 
 VALID_EXTENSIONS = (".png", ".jpg", ".jpeg", ".webp")
 
@@ -52,6 +54,26 @@ def replace_local_lessons(lessons: list[dict[str, Any]]) -> None:
     """Write lesson metadata locally without uploading it again during startup sync."""
     with open(LESSONS_FILE, "w", encoding="utf-8") as file:
         json.dump(lessons, file, indent=4)
+
+
+# ---------- HOME ----------
+
+def load_home() -> list[dict[str, Any]]:
+    with open(HOME_FILE, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def save_home(sections: list[dict[str, Any]]) -> None:
+    upload_home_data(sections)
+
+    with open(HOME_FILE, "w", encoding="utf-8") as file:
+        json.dump(sections, file, indent=4)
+
+
+def replace_local_home(sections: list[dict[str, Any]]) -> None:
+    """Write homepage metadata locally without uploading during startup sync."""
+    with open(HOME_FILE, "w", encoding="utf-8") as file:
+        json.dump(sections, file, indent=4)
 
 
 # ---------- STATIC IMAGE HELPERS ----------
@@ -204,3 +226,90 @@ def move_lesson(public_id: str, direction: str) -> None:
         lessons[index + 1], lessons[index] = lessons[index], lessons[index + 1]
 
     save_lessons(lessons)
+
+# ---------- HOME CRUD ----------
+
+def get_home_section(section_id: str) -> dict[str, Any] | None:
+    for section in load_home():
+        if section.get("id") == section_id:
+            return deepcopy(section)
+    return None
+
+
+def add_home_section(section: dict[str, Any]) -> None:
+    sections = load_home()
+    sections.append(section)
+    save_home(sections)
+
+
+def update_home_section(section_id: str, updated_section: dict[str, Any]) -> None:
+    sections = load_home()
+    for index, section in enumerate(sections):
+        if section.get("id") == section_id:
+            sections[index] = updated_section
+            save_home(sections)
+            return
+
+
+def delete_home_section(section_id: str) -> dict[str, Any] | None:
+    sections = load_home()
+    removed = None
+    remaining = []
+
+    for section in sections:
+        if section.get("id") == section_id:
+            removed = section
+        else:
+            remaining.append(section)
+
+    if removed is not None:
+        save_home(remaining)
+
+    return removed
+
+
+def move_home_section(section_id: str, direction: str) -> None:
+    sections = load_home()
+    index = next((i for i, section in enumerate(sections) if section.get("id") == section_id), None)
+
+    if index is None:
+        return
+
+    if direction == "up" and index > 0:
+        sections[index - 1], sections[index] = sections[index], sections[index - 1]
+    elif direction == "down" and index < len(sections) - 1:
+        sections[index + 1], sections[index] = sections[index], sections[index + 1]
+
+    save_home(sections)
+
+
+def move_home_image(section_id: str, public_id: str, direction: str) -> None:
+    section = get_home_section(section_id)
+    if section is None:
+        return
+
+    images = section.setdefault("images", [])
+    index = next((i for i, image in enumerate(images) if image.get("public_id") == public_id), None)
+
+    if index is None:
+        return
+
+    if direction == "up" and index > 0:
+        images[index - 1], images[index] = images[index], images[index - 1]
+    elif direction == "down" and index < len(images) - 1:
+        images[index + 1], images[index] = images[index], images[index + 1]
+
+    update_home_section(section_id, section)
+
+
+def delete_home_image(section_id: str, public_id: str) -> None:
+    section = get_home_section(section_id)
+    if section is None:
+        return
+
+    section["images"] = [
+        image for image in section.get("images", [])
+        if image.get("public_id") != public_id
+    ]
+    update_home_section(section_id, section)
+

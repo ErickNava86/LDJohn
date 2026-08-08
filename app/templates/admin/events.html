@@ -1,52 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="admin-dashboard">
+    <h1>Manage Events</h1>
 
-    <h1>LDJ Control Panel</h1>
-
-    <a href="/admin/add" class="add-event-btn">
-        Γ₧ò Add New Event
+    <a href="{{ url_for('admin.add_event_page') }}" class="add-event-btn">
+        + Add New Event
     </a>
 
     {% for event in events %}
-
     <div class="admin-event-card">
-
-        <img src="{{ image_src(event.cover_url) }}">
+        <img src="{{ image_src(event.cover_url) }}" alt="{{ event.title }} cover">
 
         <div class="admin-event-info">
-
             <h2>{{ event.title }}</h2>
-
-            <p>≡ƒôì {{ event.venue }}</p>
-
-            <p>≡ƒôà {{ event.date }}</p>
-
+            <p>{{ event.venue }}</p>
+            <p>{{ event.date }}</p>
         </div>
 
         <div class="admin-buttons">
-
-            <a href="/admin/edit/{{ event.slug }}">Γ£Å Edit</a>
-
-            <a href="/admin/photos/{{ event.slug }}">≡ƒô╕ Photos</a>
-
-            <form
-                action="{{ url_for('admin.delete_event_page', slug=event.slug) }}"
-                method="POST"
->       
-                <button type="submit">
-                    ≡ƒùæ Delete
-                </button>
+            <a href="{{ url_for('admin.edit_event_page', slug=event.slug) }}">Edit</a>
+            <a href="{{ url_for('admin.photos_page', slug=event.slug) }}">Photos</a>
+            <form action="{{ url_for('admin.delete_event_page', slug=event.slug) }}" method="POST">
+                <button type="submit">Delete</button>
             </form>
-
         </div>
-
     </div>
-
     {% endfor %}
-
 </div>
-
 {% endblock %}

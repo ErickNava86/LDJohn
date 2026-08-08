@@ -5,21 +5,24 @@ from flask import Flask, render_template, url_for
 from config import Config
 from .admin import admin
 from .cloudinary_manager import (
-    configure_cloudinary, 
-    download_events_data, 
-    download_lessons_data
-    )
-
+    configure_cloudinary,
+    download_events_data,
+    download_lessons_data,
+    download_home_data,
+)
 from .data_manager import (
     get_all_events,
     get_cruise_flyers,
     get_event,
     get_homepage_gallery,
     get_local_flyers,
+    load_home,
+    load_lessons,
     replace_local_events,
+    replace_local_home,
     replace_local_lessons,
-    load_lessons
 )
+
 
 def create_app():
     app = Flask(__name__)
@@ -41,26 +44,26 @@ def create_app():
 
     configure_cloudinary(app.config)
 
-    # Restore John\'s latest event metadata before serving any page.
     remote_events = download_events_data()
     if remote_events is not None:
         replace_local_events(remote_events)
 
-    # Restore John's latest lesson metadata before serving any page.
     remote_lessons = download_lessons_data()
     if remote_lessons is not None:
         replace_local_lessons(remote_lessons)
+
+    remote_home = download_home_data()
+    if remote_home is not None:
+        replace_local_home(remote_home)
 
     app.register_blueprint(admin)
 
     def versioned_static(filename):
         file_path = os.path.join(app.static_folder, filename)
-
         try:
             version = int(os.path.getmtime(file_path))
         except OSError:
             version = 0
-
         return url_for("static", filename=filename, v=version)
 
     def image_src(value):
@@ -77,7 +80,7 @@ def create_app():
     def home():
         return render_template(
             "index.html",
-            events=get_all_events(),
+            home_sections=load_home(),
             local_flyers=get_local_flyers(),
             cruise_flyers=get_cruise_flyers(),
             homepage_gallery=get_homepage_gallery(),
@@ -100,8 +103,8 @@ def create_app():
     @app.route("/lessons")
     def lessons():
         return render_template(
-        "lessons.html",
-        lessons=load_lessons(),
-    )
+            "lessons.html",
+            lessons=load_lessons(),
+        )
 
     return app

@@ -1084,3 +1084,111 @@ footer{
         grid-template-columns: 1fr;
     }
 
+/* ---------- HOME ADMIN ---------- */
+.home-admin {
+    padding: 30px 20px 50px;
+}
+
+.admin-note {
+    text-align: center;
+}
+
+.home-add-section {
+    display: flex;
+    gap: 10px;
+    max-width: 650px;
+    margin: 20px auto 30px;
+}
+
+.home-add-section input,
+.home-title-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+}
+
+.home-admin-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.home-admin-section {
+    background: #2a2a2a;
+    color: white;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.home-admin-section-header,
+.home-title-form,
+.home-section-actions,
+.home-image-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.home-title-form {
+    flex: 1;
+}
+
+.section-source {
+    margin: 14px 0 0;
+    opacity: 0.8;
+}
+
+.home-image-upload {
+    margin: 18px 0;
+}
+
+.home-admin-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.home-admin-image-card {
+    background: #1c1c1c;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.home-admin-image-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.danger-button {
+    background: #8b1e1e;
+    color: white;
+}
+
+.home-manual-images img {
+    margin-bottom: 25px;
+}
+
+@media (max-width: 700px) {
+    .home-add-section,
+    .home-title-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-admin-section-header {
+        align-items: stretch;
+    }
+
+    .home-section-actions {
+        justify-content: center;
+    }
+
+    .home-admin-images {
+        grid-template-columns: 1fr;
+    }
+}
+

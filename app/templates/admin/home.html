@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-dashboard home-admin">
+    <h1>Manage Home</h1>
+    <p class="admin-note">Rename and reorder the built-in sections. Add custom sections whenever you need something new.</p>
+
+    <form action="{{ url_for('admin.add_home_section_page') }}" method="POST" class="home-add-section">
+        <input type="text" name="title" placeholder="New section title" required>
+        <button type="submit">+ Add Section</button>
+    </form>
+
+    <div class="home-admin-sections">
+        {% for section in sections %}
+        <article class="home-admin-section">
+            <div class="home-admin-section-header">
+                <form action="{{ url_for('admin.rename_home_section_page', section_id=section.id) }}" method="POST" class="home-title-form">
+                    <input type="text" name="title" value="{{ section.title }}" required>
+                    <button type="submit">Save Title</button>
+                </form>
+
+                <div class="home-section-actions">
+                    <form action="{{ url_for('admin.move_home_section_page', section_id=section.id) }}" method="POST">
+                        <input type="hidden" name="direction" value="up">
+                        <button type="submit">Up</button>
+                    </form>
+                    <form action="{{ url_for('admin.move_home_section_page', section_id=section.id) }}" method="POST">
+                        <input type="hidden" name="direction" value="down">
+                        <button type="submit">Down</button>
+                    </form>
+                    {% if section.type == 'manual' %}
+                    <form action="{{ url_for('admin.delete_home_section_page', section_id=section.id) }}" method="POST">
+                        <button type="submit" class="danger-button">Delete Section</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if section.type == 'local_flyers' %}
+                <p class="section-source">Uses the existing Local Events flyers.</p>
+            {% elif section.type == 'cruise_flyers' %}
+                <p class="section-source">Uses the existing Cruise flyers.</p>
+            {% elif section.type == 'gallery' %}
+                <p class="section-source">Uses the existing Gallery preview.</p>
+            {% else %}
+                <form action="{{ url_for('admin.upload_home_images_page', section_id=section.id) }}" method="POST" enctype="multipart/form-data" class="home-image-upload">
+                    <input type="file" name="home_photos" accept="image/*" multiple required>
+                    <button type="submit">Upload Images</button>
+                </form>
+
+                {% if section.images %}
+                <div class="home-admin-images">
+                    {% for image in section.images %}
+                    <div class="home-admin-image-card">
+                        <img src="{{ image.url }}" alt="{{ section.title }} image">
+                        <div class="home-image-actions">
+                            <form action="{{ url_for('admin.move_home_image_page') }}" method="POST">
+                                <input type="hidden" name="section_id" value="{{ section.id }}">
+                                <input type="hidden" name="public_id" value="{{ image.public_id }}">
+                                <input type="hidden" name="direction" value="up">
+                                <button type="submit">Up</button>
+                            </form>
+                            <form action="{{ url_for('admin.move_home_image_page') }}" method="POST">
+                                <input type="hidden" name="section_id" value="{{ section.id }}">
+                                <input type="hidden" name="public_id" value="{{ image.public_id }}">
+                                <input type="hidden" name="direction" value="down">
+                                <button type="submit">Down</button>
+                            </form>
+                            <form action="{{ url_for('admin.delete_home_image_page') }}" method="POST">
+                                <input type="hidden" name="section_id" value="{{ section.id }}">
+                                <input type="hidden" name="public_id" value="{{ image.public_id }}">
+                                <button type="submit" class="danger-button">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    <p>No images uploaded to this section yet.</p>
+                {% endif %}
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
