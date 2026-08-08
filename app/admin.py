@@ -21,7 +21,12 @@ from .data_manager import (
     get_event_record,
     load_events,
     update_event,
+    add_lesson,
+    delete_lesson,
+    load_lessons,
+    move_lesson,
 )
+
 
 admin = Blueprint("admin", __name__)
 
@@ -31,6 +36,7 @@ def admin_required(view_function):
     def wrapped_view(*args, **kwargs):
         if not session.get("admin_logged_in"):
             return redirect(url_for("admin.login"))
+
         return view_function(*args, **kwargs)
 
     return wrapped_view
@@ -38,7 +44,12 @@ def admin_required(view_function):
 
 def create_slug(title):
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
-    existing = {event["slug"] for event in load_events()}
+
+    existing = {
+        event["slug"]
+        for event in load_events()
+    }
+
     original = slug
     count = 2
 
@@ -55,15 +66,19 @@ def next_gallery_number(gallery):
     for photo in gallery:
         public_id = photo.get("public_id", "")
         final_part = public_id.rsplit("/", 1)[-1]
+
         if final_part.isdigit():
             used_numbers.add(int(final_part))
 
     image_number = 1
+
     while image_number in used_numbers:
         image_number += 1
 
     return image_number
 
+
+# ---------- LOGIN / LOGOUT ----------
 
 @admin.route("/admin/login", methods=["GET", "POST"])
 def login():
@@ -80,6 +95,7 @@ def login():
             username,
             current_app.config["ADMIN_USERNAME"],
         )
+
         password_matches = hmac.compare_digest(
             password,
             current_app.config["ADMIN_PASSWORD"],
@@ -88,28 +104,45 @@ def login():
         if username_matches and password_matches:
             session.clear()
             session["admin_logged_in"] = True
+
             return redirect(url_for("admin.dashboard"))
 
         error = "Invalid username or password."
 
-    return render_template("admin/login.html", error=error)
+    return render_template(
+        "admin/login.html",
+        error=error,
+    )
 
 
 @admin.route("/admin/logout", methods=["POST"])
 @admin_required
 def logout():
     session.clear()
+
     return redirect(url_for("admin.login"))
 
+
+# ---------- MAIN ADMIN DASHBOARD ----------
 
 @admin.route("/admin")
 @admin_required
 def dashboard():
+    return render_template("admin/dashboard.html")
+
+
+# ---------- EVENTS DASHBOARD ----------
+
+@admin.route("/admin/events")
+@admin_required
+def events_dashboard():
     return render_template(
-        "admin/dashboard.html",
-        events=get_all_events(),
+        "admin/events.html",
+        events=load_events(),
     )
 
+
+# ---------- ADD EVENT ----------
 
 @admin.route("/admin/add", methods=["GET", "POST"])
 @admin_required
@@ -128,6 +161,7 @@ def add_event_page():
         }
 
         cover = request.files.get("cover_photo")
+
         if cover and cover.filename:
             new_event["cover"] = upload_image(
                 cover,
@@ -145,15 +179,22 @@ def add_event_page():
                 photo,
                 f"ldjohn/events/{slug}/{image_number}",
             )
+
             uploaded["caption"] = ""
             new_event["gallery"].append(uploaded)
+
             image_number += 1
 
         add_event(new_event)
-        return redirect(url_for("admin.dashboard"))
+
+        return redirect(
+            url_for("admin.events_dashboard")
+        )
 
     return render_template("admin/add_event.html")
 
+
+# ---------- EDIT EVENT ----------
 
 @admin.route("/admin/edit/<slug>", methods=["GET", "POST"])
 @admin_required
@@ -161,23 +202,29 @@ def edit_event_page(slug):
     event = get_event_record(slug)
 
     if event is None:
-        return redirect(url_for("admin.dashboard"))
+        return redirect(
+            url_for("admin.events_dashboard")
+        )
 
     if request.method == "POST":
         event["title"] = request.form["title"]
         event["date"] = request.form["date"]
         event["venue"] = request.form["venue"]
         event["description"] = request.form["description"]
+
         event.setdefault("gallery", [])
 
         cover = request.files.get("cover_photo")
+
         if cover and cover.filename:
             event["cover"] = upload_image(
                 cover,
                 f"ldjohn/events/{slug}/cover",
             )
 
-        image_number = next_gallery_number(event["gallery"])
+        image_number = next_gallery_number(
+            event["gallery"]
+        )
 
         for photo in request.files.getlist("photos"):
             if not photo or not photo.filename:
@@ -187,12 +234,19 @@ def edit_event_page(slug):
                 photo,
                 f"ldjohn/events/{slug}/{image_number}",
             )
+
             uploaded["caption"] = ""
             event["gallery"].append(uploaded)
-            image_number = next_gallery_number(event["gallery"])
+
+            image_number = next_gallery_number(
+                event["gallery"]
+            )
 
         update_event(slug, event)
-        return redirect(url_for("admin.dashboard"))
+
+        return redirect(
+            url_for("admin.events_dashboard")
+        )
 
     return render_template(
         "admin/edit_event.html",
@@ -200,13 +254,17 @@ def edit_event_page(slug):
     )
 
 
+# ---------- EVENT PHOTOS ----------
+
 @admin.route("/admin/photos/<slug>")
 @admin_required
 def photos_page(slug):
     event = get_event(slug)
 
     if event is None:
-        return redirect(url_for("admin.dashboard"))
+        return redirect(
+            url_for("admin.events_dashboard")
+        )
 
     return render_template(
         "admin/photos.html",
@@ -220,21 +278,32 @@ def photos_page(slug):
 def delete_photo():
     slug = request.form["slug"]
     public_id = request.form["public_id"]
+
     event = get_event_record(slug)
 
     if event is None:
-        return redirect(url_for("admin.dashboard"))
+        return redirect(
+            url_for("admin.events_dashboard")
+        )
 
     event["gallery"] = [
         photo
         for photo in event.get("gallery", [])
         if photo.get("public_id") != public_id
     ]
+
     update_event(slug, event)
     delete_image(public_id)
 
-    return redirect(url_for("admin.photos_page", slug=slug))
+    return redirect(
+        url_for(
+            "admin.photos_page",
+            slug=slug,
+        )
+    )
 
+
+# ---------- DELETE EVENT ----------
 
 @admin.route("/admin/delete/<slug>", methods=["POST"])
 @admin_required
@@ -245,9 +314,81 @@ def delete_event_page(slug):
 
     if event:
         cover = event.get("cover") or {}
-        delete_image(cover.get("public_id"))
+
+        delete_image(
+            cover.get("public_id")
+        )
 
         for photo in event.get("gallery", []):
-            delete_image(photo.get("public_id"))
+            delete_image(
+                photo.get("public_id")
+            )
 
-    return redirect(url_for("admin.dashboard"))
+    return redirect(
+        url_for("admin.events_dashboard")
+    )
+
+
+# ---------- LESSONS ----------
+
+@admin.route("/admin/lessons", methods=["GET", "POST"])
+@admin_required
+def lessons_page():
+    if request.method == "POST":
+        lesson_files = request.files.getlist(
+            "lesson_photos"
+        )
+
+        lessons = load_lessons()
+        image_number = len(lessons) + 1
+
+        for photo in lesson_files:
+            if not photo or not photo.filename:
+                continue
+
+            uploaded = upload_image(
+                photo,
+                f"ldjohn/lessons/{image_number}",
+            )
+
+            add_lesson(uploaded)
+
+            image_number += 1
+
+        return redirect(
+            url_for("admin.lessons_page")
+        )
+
+    return render_template(
+        "admin/lessons.html",
+        lessons=load_lessons(),
+    )
+
+
+@admin.route("/admin/lessons/delete", methods=["POST"])
+@admin_required
+def delete_lesson_page():
+    public_id = request.form["public_id"]
+
+    delete_lesson(public_id)
+    delete_image(public_id)
+
+    return redirect(
+        url_for("admin.lessons_page")
+    )
+
+
+@admin.route("/admin/lessons/move", methods=["POST"])
+@admin_required
+def move_lesson_page():
+    public_id = request.form["public_id"]
+    direction = request.form["direction"]
+
+    move_lesson(
+        public_id,
+        direction,
+    )
+
+    return redirect(
+        url_for("admin.lessons_page")
+    )

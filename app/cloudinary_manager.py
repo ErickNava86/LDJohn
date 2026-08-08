@@ -8,6 +8,7 @@ import cloudinary.api
 import cloudinary.uploader
 
 EVENTS_DATA_PUBLIC_ID = "ldjohn/data/events.json"
+LESSONS_DATA_PUBLIC_ID = "ldjohn/data/lessons.json"
 
 
 def configure_cloudinary(config: dict[str, Any]) -> None:
@@ -75,6 +76,28 @@ def upload_events_data(events: list[dict[str, Any]]) -> None:
         if os.path.exists(temp_path):
             os.remove(temp_path)
 
+def upload_lessons_data(lessons: list[dict[str, Any]]) -> None:
+    """Persist lesson metadata as a private-to-the-app Cloudinary raw asset."""
+    if not cloudinary_is_configured():
+        return
+
+    fd, temp_path = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+
+    try:
+        with open(temp_path, "w", encoding="utf-8") as file:
+            json.dump(lessons, file, indent=4)
+
+        cloudinary.uploader.upload(
+            temp_path,
+            public_id=LESSONS_DATA_PUBLIC_ID,
+            resource_type="raw",
+            overwrite=True,
+            invalidate=True,
+        )
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
 
 def download_events_data() -> list[dict[str, Any]] | None:
     """Fetch the latest persisted event metadata, or None if none exists yet."""
@@ -96,3 +119,28 @@ def download_events_data() -> list[dict[str, Any]] | None:
     except Exception:
         # First deployment has no remote metadata yet; the bundled JSON remains the fallback.
         return None
+
+def download_lessons_data() -> list[dict[str, Any]] | None:
+    """Fetch the latest persisted lesson metadata, or None if none exists yet."""
+    if not cloudinary_is_configured():
+        return None
+
+    try:
+        resource = cloudinary.api.resource(
+            LESSONS_DATA_PUBLIC_ID,
+            resource_type="raw",
+        )
+        secure_url = resource["secure_url"]
+
+        # Standard library only: no extra HTTP dependency is required.
+        from urllib.request import urlopen
+
+        with urlopen(secure_url, timeout=15) as response:
+            return json.loads(response.read().decode("utf-8"))
+
+    except Exception:
+        # First deployment has no remote lesson metadata yet;
+        # the bundled lessons.json remains the fallback.
+        return None
+
+

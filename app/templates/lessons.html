@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="lessons-page">
+
+    <h1>Lessons</h1>
+
+    {% if lessons %}
+        <div class="lessons-list">
+
+            {% for lesson in lessons %}
+                <div class="lesson-item">
+                    <img
+                        src="{{ lesson.url }}"
+                        alt="Line Dancing Lesson"
+                        loading="lazy"
+                    >
+                </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p class="lessons-empty">
+            New lessons coming soon!
+        </p>
+    {% endif %}
+
+</section>
+
+{% endblock %}

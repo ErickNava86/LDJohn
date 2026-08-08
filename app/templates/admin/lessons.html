@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="admin-dashboard lessons-admin">
+
+    <h1>Manage Lessons</h1>
+
+    <form
+        action="{{ url_for('admin.lessons_page') }}"
+        method="POST"
+        enctype="multipart/form-data"
+        class="lesson-upload-form"
+    >
+
+        <label for="lesson_photos">
+            Upload Lesson Flyers
+        </label>
+
+        <input
+            type="file"
+            id="lesson_photos"
+            name="lesson_photos"
+            accept="image/*"
+            multiple
+            required
+        >
+
+        <button type="submit">
+            ➕ Upload Flyers
+        </button>
+
+    </form>
+
+
+    {% if lessons %}
+
+        <div class="admin-lessons-list">
+
+            {% for lesson in lessons %}
+
+                <div class="admin-lesson-card">
+
+                    <img
+                        src="{{ lesson.url }}"
+                        alt="Lesson flyer"
+                    >
+
+                    <div class="admin-lesson-buttons">
+
+                        <form
+                            action="{{ url_for('admin.move_lesson_page') }}"
+                            method="POST"
+                        >
+                            <input
+                                type="hidden"
+                                name="public_id"
+                                value="{{ lesson.public_id }}"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="direction"
+                                value="up"
+                            >
+
+                            <button type="submit">
+                                ↑ Up
+                            </button>
+                        </form>
+
+
+                        <form
+                            action="{{ url_for('admin.move_lesson_page') }}"
+                            method="POST"
+                        >
+                            <input
+                                type="hidden"
+                                name="public_id"
+                                value="{{ lesson.public_id }}"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="direction"
+                                value="down"
+                            >
+
+                            <button type="submit">
+                                ↓ Down
+                            </button>
+                        </form>
+
+
+                        <form
+                            action="{{ url_for('admin.delete_lesson_page') }}"
+                            method="POST"
+                        >
+                            <input
+                                type="hidden"
+                                name="public_id"
+                                value="{{ lesson.public_id }}"
+                            >
+
+                            <button type="submit">
+                                🗑 Delete
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p>No lesson flyers uploaded yet.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

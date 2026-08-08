@@ -4,7 +4,12 @@ from flask import Flask, render_template, url_for
 
 from config import Config
 from .admin import admin
-from .cloudinary_manager import configure_cloudinary, download_events_data
+from .cloudinary_manager import (
+    configure_cloudinary, 
+    download_events_data, 
+    download_lessons_data
+    )
+
 from .data_manager import (
     get_all_events,
     get_cruise_flyers,
@@ -12,8 +17,9 @@ from .data_manager import (
     get_homepage_gallery,
     get_local_flyers,
     replace_local_events,
+    replace_local_lessons,
+    load_lessons
 )
-
 
 def create_app():
     app = Flask(__name__)
@@ -39,6 +45,11 @@ def create_app():
     remote_events = download_events_data()
     if remote_events is not None:
         replace_local_events(remote_events)
+
+    # Restore John's latest lesson metadata before serving any page.
+    remote_lessons = download_lessons_data()
+    if remote_lessons is not None:
+        replace_local_lessons(remote_lessons)
 
     app.register_blueprint(admin)
 
@@ -85,5 +96,12 @@ def create_app():
             "event.html",
             event=get_event(slug),
         )
+
+    @app.route("/lessons")
+    def lessons():
+        return render_template(
+        "lessons.html",
+        lessons=load_lessons(),
+    )
 
     return app
