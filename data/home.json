@@ -1,20 +1,29 @@
 [
     {
-        "id": "local-events",
+        "id": "upcoming-local-events",
         "title": "Upcoming Local Events",
-        "type": "local_flyers",
-        "images": []
-    },
-    {
-        "id": "cruises",
-        "title": "Upcoming Cruises",
-        "type": "cruise_flyers",
-        "images": []
-    },
-    {
-        "id": "gallery",
-        "title": "Gallery",
-        "type": "gallery",
-        "images": []
+        "type": "manual",
+        "images": [
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786391999/ldjohn/home/upcoming-local-events/5.png",
+                "public_id": "ldjohn/home/upcoming-local-events/5"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786391951/ldjohn/home/upcoming-local-events/1.png",
+                "public_id": "ldjohn/home/upcoming-local-events/1"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786391952/ldjohn/home/upcoming-local-events/2.png",
+                "public_id": "ldjohn/home/upcoming-local-events/2"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786391953/ldjohn/home/upcoming-local-events/3.png",
+                "public_id": "ldjohn/home/upcoming-local-events/3"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786391954/ldjohn/home/upcoming-local-events/4.png",
+                "public_id": "ldjohn/home/upcoming-local-events/4"
+            }
+        ]
     }
 ]
