@@ -394,12 +394,12 @@ def move_home_section_page(section_id):
 @admin.route("/admin/home/section/<section_id>/delete", methods=["POST"])
 @admin_required
 def delete_home_section_page(section_id):
-    section = get_home_section(section_id)
-    if section and section.get("type") == "manual":
-        removed = delete_home_section(section_id)
-        if removed:
-            for image in removed.get("images", []):
-                delete_image(image.get("public_id"))
+    removed = delete_home_section(section_id)
+
+    if removed:
+        for image in removed.get("images", []):
+            delete_image(image.get("public_id"))
+
     return redirect(url_for("admin.home_page"))
 
 

@@ -25,5 +25,17 @@
                 "public_id": "ldjohn/home/upcoming-local-events/4"
             }
         ]
+    },
+    {
+        "id": "gallery",
+        "title": "Gallery",
+        "type": "gallery",
+        "images": []
+    },
+    {
+        "id": "new-sectioj",
+        "title": "new sectioj",
+        "type": "manual",
+        "images": []
     }
 ]
