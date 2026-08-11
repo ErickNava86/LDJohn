@@ -9,6 +9,10 @@
                 "public_id": "ldjohn/home/upcoming-local-events/5"
             },
             {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786460947/ldjohn/home/upcoming-local-events/6.png",
+                "public_id": "ldjohn/home/upcoming-local-events/6"
+            },
+            {
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786391951/ldjohn/home/upcoming-local-events/1.png",
                 "public_id": "ldjohn/home/upcoming-local-events/1"
             },
@@ -27,15 +31,36 @@
         ]
     },
     {
+        "id": "upcoming-cruises",
+        "title": "Upcoming Cruises",
+        "type": "manual",
+        "images": [
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786406246/ldjohn/home/upcoming-cruises/1.png",
+                "public_id": "ldjohn/home/upcoming-cruises/1"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786406246/ldjohn/home/upcoming-cruises/2.jpg",
+                "public_id": "ldjohn/home/upcoming-cruises/2"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786406391/ldjohn/home/upcoming-cruises/3.png",
+                "public_id": "ldjohn/home/upcoming-cruises/3"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786406632/ldjohn/home/upcoming-cruises/4.png",
+                "public_id": "ldjohn/home/upcoming-cruises/4"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786406633/ldjohn/home/upcoming-cruises/5.png",
+                "public_id": "ldjohn/home/upcoming-cruises/5"
+            }
+        ]
+    },
+    {
         "id": "gallery",
         "title": "Gallery",
         "type": "gallery",
-        "images": []
-    },
-    {
-        "id": "new-sectioj",
-        "title": "new sectioj",
-        "type": "manual",
         "images": []
     }
 ]

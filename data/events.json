@@ -2,7 +2,7 @@
     {
         "title": "Line Dancing at VFW Monrovia ",
         "slug": "monday-night-vfw",
-        "date": "Since 7/14/25",
+        "date": "Since 7/14/2025",
         "venue": "VFW Hall",
         "description": "Sunday lessons for 3 levels: beginner, improver, and intermediate. 1:30p, 2:30p, and 3:30p.\r\n\r\nMonday Line Dancing Club with lessons from 6:30p - 9:00p.\r\n\r\n2nd and 4th Thursdays with Britt and Jocelyn from 6:00p - 9:00p. Beginners class and Line Dancing Club. ",
         "gallery": [
@@ -24,7 +24,7 @@
             {
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952144/ldjohn/events/monday-night-vfw/4.jpg",
                 "public_id": "ldjohn/events/monday-night-vfw/4",
-                "caption": ""
+                "caption": "My first year!"
             },
             {
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/5.jpg",
@@ -50,8 +50,8 @@
     {
         "slug": "chaparral-saloon",
         "title": "Line Dancing Pop-ups",
-        "date": "Since 2025",
-        "venue": "Chaparral 300, Chino Hills & Route 66 Roadhouse, Duarte",
+        "date": "Since 7/25/2026",
+        "venue": "Chaparral 300, Chino Hills",
         "description": "While I'm based primarily in Monrovia, I've been invited to bring line dancing at other venues as Saturday Pop-Ups.",
         "gallery": [
             {
@@ -123,10 +123,25 @@
                 "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786120987/ldjohn/events/chaparral-saloon/14.png",
                 "public_id": "ldjohn/events/chaparral-saloon/14",
                 "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786461057/ldjohn/events/chaparral-saloon/15.png",
+                "public_id": "ldjohn/events/chaparral-saloon/15",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786461282/ldjohn/events/chaparral-saloon/16.png",
+                "public_id": "ldjohn/events/chaparral-saloon/16",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786461317/ldjohn/events/chaparral-saloon/17.png",
+                "public_id": "ldjohn/events/chaparral-saloon/17",
+                "caption": ""
             }
         ],
         "cover": {
-            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785856511/ldjohn/events/chaparral-saloon/cover.png",
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786461280/ldjohn/events/chaparral-saloon/cover.png",
             "public_id": "ldjohn/events/chaparral-saloon/cover"
         }
     },

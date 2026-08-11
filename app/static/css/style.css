@@ -385,53 +385,77 @@ img{
 }
 
 #lightbox{
-
     display:none;
     position:fixed;
-    top:0;
-    left:0;
+    inset:0;
     width:100%;
     height:100%;
     background:rgba(0,0,0,.9);
     justify-content:center;
     align-items:center;
     z-index:1000;
-
+    padding:24px;
+    box-sizing:border-box;
 }
 
-#lightbox img{
-    max-width:90%;
-    max-height:90%;
+.lightbox-content{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+#lightbox-image{
+    display:block;
+    max-width:92vw;
+    max-height:calc(100vh - 165px);
+    width:auto;
+    height:auto;
+    object-fit:contain;
     border-radius:10px;
 }
 
 .close{
     position:absolute;
-    top:20px;
-    right:35px;
+    top:14px;
+    right:24px;
     color:white;
-    font-size:50px;
+    font-size:44px;
+    line-height:1;
     cursor:pointer;
+    z-index:1002;
+}
+
+#lightbox-caption{
+    width:min(92vw, 900px);
+    margin:2px auto 0;
+    color:white;
+    text-align:center;
+    font-size:1.1rem;
+    line-height:1.4;
+}
+
+.lightbox-nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:52px;
+    min-height:48px;
 }
 
 .arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
+    position:static;
+    transform:none;
     color:white;
-    font-size:60px;
+    font-size:42px;
+    line-height:1;
     cursor:pointer;
     user-select:none;
-    padding:20px;
+    padding:4px 16px;
     z-index:1001;
-}
-
-#previous{
-    left:30px;
-}
-
-#next{
-    right:30px;
 }
 
 .arrow:hover{
@@ -524,14 +548,6 @@ img{
     cursor:pointer;
     object-fit:cover;
     aspect-ratio:1/1;
-}
-
-#lightbox-caption{
-    color:white;
-    text-align:center;
-    margin-top:20px;
-    font-size:1.1rem;
-    max-width:80%;
 }
 
 .back-button{
@@ -1209,3 +1225,34 @@ footer{
     }
 }
 
+
+@media (max-width:700px){
+    #lightbox{
+        padding:16px 10px 12px;
+    }
+
+    #lightbox-image{
+        max-width:96vw;
+        max-height:calc(100vh - 145px);
+    }
+
+    #lightbox-caption{
+        width:94vw;
+        font-size:1rem;
+    }
+
+    .lightbox-nav{
+        gap:38px;
+    }
+
+    .arrow{
+        font-size:38px;
+        padding:2px 14px;
+    }
+
+    .close{
+        top:10px;
+        right:16px;
+        font-size:40px;
+    }
+}

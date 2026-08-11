@@ -184,35 +184,81 @@ def delete_event(slug: str) -> None:
     save_events(remaining)
 
 
+
+# ---------- EVENT GALLERY MANAGEMENT ----------
+
+def move_event_photo(slug: str, public_id: str, direction: str) -> None:
+    event = get_event_record(slug)
+    if event is None:
+        return
+
+    gallery = event.setdefault("gallery", [])
+    index = next(
+        (i for i, photo in enumerate(gallery) if photo.get("public_id") == public_id),
+        None,
+    )
+    if index is None:
+        return
+
+    if direction == "up" and index > 0:
+        gallery[index - 1], gallery[index] = gallery[index], gallery[index - 1]
+    elif direction == "down" and index < len(gallery) - 1:
+        gallery[index + 1], gallery[index] = gallery[index], gallery[index + 1]
+
+    update_event(slug, event)
+
+
+def update_event_photo_caption(slug: str, public_id: str, caption: str) -> None:
+    event = get_event_record(slug)
+    if event is None:
+        return
+
+    for photo in event.setdefault("gallery", []):
+        if photo.get("public_id") == public_id:
+            photo["caption"] = caption.strip()
+            update_event(slug, event)
+            return
+
 # ---------- LESSON CRUD ----------
 
 def add_lesson(lesson: dict[str, Any]) -> None:
+    """Add a new lesson at the top so newest uploads display first."""
     lessons = load_lessons()
-    lessons.append(lesson)
+    lessons.insert(0, lesson)
     save_lessons(lessons)
 
 
-def delete_lesson(public_id: str) -> None:
+def delete_lesson(lesson_url: str) -> str | None:
+    """Delete exactly one lesson record, even if legacy public IDs are duplicated.
+
+    Returns the Cloudinary public_id only when no remaining lesson record uses it.
+    """
     lessons = load_lessons()
-
-    remaining = [
-        lesson
-        for lesson in lessons
-        if lesson.get("public_id") != public_id
-    ]
-
-    save_lessons(remaining)
-
-
-def move_lesson(public_id: str, direction: str) -> None:
-    lessons = load_lessons()
-
     index = next(
-        (
-            i
-            for i, lesson in enumerate(lessons)
-            if lesson.get("public_id") == public_id
-        ),
+        (i for i, lesson in enumerate(lessons) if lesson.get("url") == lesson_url),
+        None,
+    )
+    if index is None:
+        return None
+
+    removed = lessons.pop(index)
+    public_id = removed.get("public_id")
+    save_lessons(lessons)
+
+    if public_id and not any(lesson.get("public_id") == public_id for lesson in lessons):
+        return public_id
+    return None
+
+
+def move_lesson(lesson_url: str, direction: str) -> None:
+    """Move the exact lesson selected by its unique stored URL.
+
+    URL is used instead of public_id because older data contains duplicate
+    Cloudinary public IDs created by the former len(lessons)+1 naming scheme.
+    """
+    lessons = load_lessons()
+    index = next(
+        (i for i, lesson in enumerate(lessons) if lesson.get("url") == lesson_url),
         None,
     )
 
@@ -221,11 +267,11 @@ def move_lesson(public_id: str, direction: str) -> None:
 
     if direction == "up" and index > 0:
         lessons[index - 1], lessons[index] = lessons[index], lessons[index - 1]
-
     elif direction == "down" and index < len(lessons) - 1:
         lessons[index + 1], lessons[index] = lessons[index], lessons[index + 1]
 
     save_lessons(lessons)
+
 
 # ---------- HOME CRUD ----------
 

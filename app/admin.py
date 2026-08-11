@@ -1,6 +1,7 @@
 from functools import wraps
 import hmac
 import re
+import uuid
 
 from flask import (
     Blueprint,
@@ -33,6 +34,8 @@ from .data_manager import (
     delete_lesson,
     load_lessons,
     move_lesson,
+    move_event_photo,
+    update_event_photo_caption,
 )
 
 
@@ -311,6 +314,30 @@ def delete_photo():
     )
 
 
+@admin.route("/admin/photos/move", methods=["POST"])
+@admin_required
+def move_photo_page():
+    slug = request.form["slug"]
+    move_event_photo(
+        slug,
+        request.form["public_id"],
+        request.form["direction"],
+    )
+    return redirect(url_for("admin.photos_page", slug=slug))
+
+
+@admin.route("/admin/photos/caption", methods=["POST"])
+@admin_required
+def update_photo_caption_page():
+    slug = request.form["slug"]
+    update_event_photo_caption(
+        slug,
+        request.form["public_id"],
+        request.form.get("caption", ""),
+    )
+    return redirect(url_for("admin.photos_page", slug=slug))
+
+
 # ---------- DELETE EVENT ----------
 
 @admin.route("/admin/delete/<slug>", methods=["POST"])
@@ -466,21 +493,19 @@ def lessons_page():
             "lesson_photos"
         )
 
-        lessons = load_lessons()
-        image_number = len(lessons) + 1
-
         for photo in lesson_files:
             if not photo or not photo.filename:
                 continue
 
+            # Never derive Cloudinary IDs from list length. Deletions can make
+            # those IDs collide, which was causing the wrong lesson to move/delete.
+            lesson_id = uuid.uuid4().hex
             uploaded = upload_image(
                 photo,
-                f"ldjohn/lessons/{image_number}",
+                f"ldjohn/lessons/{lesson_id}",
             )
 
             add_lesson(uploaded)
-
-            image_number += 1
 
         return redirect(
             url_for("admin.lessons_page")
@@ -495,10 +520,11 @@ def lessons_page():
 @admin.route("/admin/lessons/delete", methods=["POST"])
 @admin_required
 def delete_lesson_page():
-    public_id = request.form["public_id"]
+    lesson_url = request.form["lesson_url"]
 
-    delete_lesson(public_id)
-    delete_image(public_id)
+    public_id_to_delete = delete_lesson(lesson_url)
+    if public_id_to_delete:
+        delete_image(public_id_to_delete)
 
     return redirect(
         url_for("admin.lessons_page")
@@ -508,11 +534,11 @@ def delete_lesson_page():
 @admin.route("/admin/lessons/move", methods=["POST"])
 @admin_required
 def move_lesson_page():
-    public_id = request.form["public_id"]
+    lesson_url = request.form["lesson_url"]
     direction = request.form["direction"]
 
     move_lesson(
-        public_id,
+        lesson_url,
         direction,
     )
 
