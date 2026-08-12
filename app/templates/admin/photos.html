@@ -7,7 +7,7 @@
 
     <div class="photo-grid">
         {% for photo in photos %}
-        <div class="photo-card">
+        <div class="photo-card" id="photo-{{ photo.public_id|replace('/', '-') }}">
             <img src="{{ image_src(photo.url) }}" alt="Event Photo">
 
             <div class="photo-order-controls">

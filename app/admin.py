@@ -236,6 +236,7 @@ def edit_event_page(slug):
         image_number = next_gallery_number(
             event["gallery"]
         )
+        new_photos = []
 
         for photo in request.files.getlist("photos"):
             if not photo or not photo.filename:
@@ -247,11 +248,13 @@ def edit_event_page(slug):
             )
 
             uploaded["caption"] = ""
-            event["gallery"].append(uploaded)
+            new_photos.append(uploaded)
 
-            image_number = next_gallery_number(
-                event["gallery"]
-            )
+            image_number += 1
+
+        # New gallery uploads belong at the top while preserving
+        # the order in which a multi-file upload was selected.
+        event["gallery"] = new_photos + event["gallery"]
 
         update_event(slug, event)
 
@@ -335,7 +338,13 @@ def update_photo_caption_page():
         request.form["public_id"],
         request.form.get("caption", ""),
     )
-    return redirect(url_for("admin.photos_page", slug=slug))
+    return redirect(
+        url_for(
+            "admin.photos_page",
+            slug=slug,
+            _anchor=f"photo-{request.form['public_id'].replace('/', '-')}",
+        )
+    )
 
 
 # ---------- DELETE EVENT ----------
