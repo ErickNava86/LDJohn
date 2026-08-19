@@ -454,18 +454,25 @@ def upload_home_images_page(section_id):
             used_numbers.add(int(final_part))
 
     image_number = 1
+    new_images = []
+
     for photo in request.files.getlist("home_photos"):
         if not photo or not photo.filename:
             continue
+
         while image_number in used_numbers:
             image_number += 1
+
         uploaded = upload_image(
             photo,
             f"ldjohn/home/{section_id}/{image_number}",
         )
-        images.append(uploaded)
+
+        new_images.append(uploaded)
         used_numbers.add(image_number)
         image_number += 1
+
+    section["images"] = new_images + images
 
     update_home_section(section_id, section)
     return redirect(url_for("admin.home_page"))
