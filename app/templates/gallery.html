@@ -2,20 +2,15 @@
 
 {% block content %}
 
-<section id="gallery-page">
+<section class="gallery-page" id="gallery-page">
 
     <h1>Photo Gallery</h1>
-
-    <p class="event-intro">
-        Take a look at some of our favorite memories!
-    </p>
 
     <div class="event-grid">
 
         {% for event in events %}
 
-        <a class="event-link"
-           href="{{ url_for('event_page', slug=event.slug) }}">
+        <a class="event-link" href="{{ url_for('event_page', slug=event.slug) }}">
 
             <div class="event-card">
 
