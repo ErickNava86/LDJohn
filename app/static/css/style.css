@@ -1341,7 +1341,7 @@ body{
     background-color:#1b100b;
     background-image:url("../images/branding/background-light.png");
     background-repeat:repeat;
-    background-size:768px auto;
+    background-size:auto;
     background-position:top center;
 }
 
