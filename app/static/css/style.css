@@ -1338,7 +1338,11 @@ Placed last intentionally so these rules override earlier
    ========================================================= */
 
 body{
-    background:#1b100b;
+    background-color:#1b100b;
+    background-image:url("../images/branding/background-light.png");
+    background-repeat:repeat;
+    background-size:768px auto;
+    background-position:top center;
 }
 
 /* Large / normal laptop */
