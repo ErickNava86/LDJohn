@@ -6,10 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport"content="width=device-width, initial-scale=1.0">
 
-    <title>LD John</title>
+<title>{{ seo_title|default("Line Dancing John | Lessons, Events & Private Bookings") }}</title>
 
-    <link rel="stylesheet"href="{{ versioned_static('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+<meta
+    name="description"
+    content="{{ seo_description|default('Line Dancing John offers welcoming line dancing lessons, events, private instruction, parties, business events, and cruise ship classes in Southern California.') }}"
+>
+
+<link rel="canonical" href="{{ request.base_url }}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ seo_title|default('Line Dancing John | Lessons, Events & Private Bookings') }}">
+<meta property="og:description" content="{{ seo_description|default('Line dancing lessons, events, private instruction, parties, celebrations, business events, and cruise ship classes with Line Dancing John.') }}">
+<meta property="og:url" content="{{ request.base_url }}">
+
+<meta name="robots" content="index, follow">
+
+<link
+    rel="icon"
+    href="{{ versioned_static('images/branding/LD-Icon.png') }}"
+    type="image/png"
+>
+
+<link rel="stylesheet" href="{{ versioned_static('css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
 
 
 </head>
