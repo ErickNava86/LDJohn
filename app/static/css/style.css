@@ -1341,12 +1341,23 @@ body{
     background-color:#1b100b;
     background-image:url("../images/branding/background-light.png");
     background-repeat:repeat;
-    background-size:auto;
-    background-position:left center;
+    background-size: auto;
+    background-position:center;
+}
+
+/* Large PC background */
+@media (min-width: 1601px) {
+    body {
+        background-image: url("../images/branding/background-dark.png");
+    }
 }
 
 /* Large / normal laptop */
 @media (max-width:1600px){
+    body {
+    background-image: url("../images/branding/background-dark.png");
+    }
+
     .page{
         width:80%;
         max-width:550px;
@@ -1404,5 +1415,34 @@ body{
         max-width:100%;
         margin:0 auto;
     }
+}
+
+/* ---------- EVENT ORDER CONTROLS ---------- */
+
+.event-move-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-dashboard .event-move-controls form,
+.admin-dashboard .event-delete-form {
+    display: block;
+    margin: 0;
+    max-width: none;
+}
+
+.admin-dashboard .event-move-controls button {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.admin-dashboard .event-move-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.admin-dashboard .event-delete-form button {
+    width: 100%;
 }
 

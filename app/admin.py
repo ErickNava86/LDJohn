@@ -34,6 +34,7 @@ from .data_manager import (
     delete_lesson,
     load_lessons,
     move_lesson,
+    move_event,
     move_event_photo,
     update_event_photo_caption,
 )
@@ -149,8 +150,15 @@ def dashboard():
 def events_dashboard():
     return render_template(
         "admin/events.html",
-        events=load_events(),
+        events=get_all_events(),
     )
+
+
+@admin.route("/admin/events/<slug>/move", methods=["POST"])
+@admin_required
+def move_event_page(slug):
+    move_event(slug, request.form.get("direction", ""))
+    return redirect(url_for("admin.events_dashboard"))
 
 
 # ---------- ADD EVENT ----------

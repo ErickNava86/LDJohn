@@ -19,9 +19,21 @@
         </div>
 
         <div class="admin-buttons">
+            <div class="event-move-controls">
+                <form action="{{ url_for('admin.move_event_page', slug=event.slug) }}" method="POST">
+                    <input type="hidden" name="direction" value="up">
+                    <button type="submit" {% if loop.first %}disabled{% endif %}>↑ Up</button>
+                </form>
+
+                <form action="{{ url_for('admin.move_event_page', slug=event.slug) }}" method="POST">
+                    <input type="hidden" name="direction" value="down">
+                    <button type="submit" {% if loop.last %}disabled{% endif %}>↓ Down</button>
+                </form>
+            </div>
+
             <a href="{{ url_for('admin.edit_event_page', slug=event.slug) }}">Edit</a>
             <a href="{{ url_for('admin.photos_page', slug=event.slug) }}">Photos</a>
-            <form action="{{ url_for('admin.delete_event_page', slug=event.slug) }}" method="POST">
+            <form class="event-delete-form" action="{{ url_for('admin.delete_event_page', slug=event.slug) }}" method="POST">
                 <button type="submit">Delete</button>
             </form>
         </div>

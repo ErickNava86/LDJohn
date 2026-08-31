@@ -184,6 +184,26 @@ def delete_event(slug: str) -> None:
     save_events(remaining)
 
 
+def move_event(slug: str, direction: str) -> None:
+    """Move an event up or down in the admin/public display order."""
+    events = load_events()
+    index = next(
+        (i for i, event in enumerate(events) if event.get("slug") == slug),
+        None,
+    )
+
+    if index is None:
+        return
+
+    if direction == "up" and index > 0:
+        events[index - 1], events[index] = events[index], events[index - 1]
+    elif direction == "down" and index < len(events) - 1:
+        events[index + 1], events[index] = events[index], events[index + 1]
+    else:
+        return
+
+    save_events(events)
+
 
 # ---------- EVENT GALLERY MANAGEMENT ----------
 
