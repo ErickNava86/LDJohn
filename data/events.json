@@ -1,5 +1,164 @@
 [
     {
+        "title": "2026 Calendars",
+        "slug": "calendars",
+        "date": "2026",
+        "venue": "VFW Hall",
+        "description": "Monthly calendars for 2026",
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157213/ldjohn/events/calendars/cover.png",
+            "public_id": "ldjohn/events/calendars/cover"
+        },
+        "gallery": [
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157247/ldjohn/events/calendars/3.png",
+                "public_id": "ldjohn/events/calendars/3",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157246/ldjohn/events/calendars/2.png",
+                "public_id": "ldjohn/events/calendars/2",
+                "caption": ""
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157214/ldjohn/events/calendars/1.png",
+                "public_id": "ldjohn/events/calendars/1",
+                "caption": ""
+            }
+        ]
+    },
+    {
+        "title": "Lessons and Playlist",
+        "slug": "lessons-and-playlist",
+        "date": "August 2026",
+        "venue": "VFW Hall",
+        "description": "What am I teaching and is being requested at our line dancing club?  Here's the place to find it. ",
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787709438/ldjohn/events/lessons-and-playlist/cover.png",
+            "public_id": "ldjohn/events/lessons-and-playlist/cover"
+        },
+        "gallery": [
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788246604/ldjohn/events/lessons-and-playlist/10.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/10",
+                "caption": "8/31/26 celebrating August birthdays and Dolly Parton"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157037/ldjohn/events/lessons-and-playlist/9.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/9",
+                "caption": "8/30/26 Sunday lessons from 1:30p - 4:30p. Beginner, improver, and intermediate."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787539392/ldjohn/events/lessons-and-playlist/8.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/8",
+                "caption": "8/23/26 Sunday lessons from 1:30p - 4:30p. Beginner, improver, and intermediate."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787061411/ldjohn/events/lessons-and-playlist/7.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/7",
+                "caption": "8/17/26 Monday at the VFW in Monrovia"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787061410/ldjohn/events/lessons-and-playlist/6.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/6",
+                "caption": "8/16/26 Sunday at the VFW in Monrovia"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786547333/ldjohn/events/lessons-and-playlist/5.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/5",
+                "caption": "8/10/26 Monday at the VFW in Monrovia"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786547333/ldjohn/events/lessons-and-playlist/4.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/4",
+                "caption": "8/9/26 Sunday at the VFW in Monrovia"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786547153/ldjohn/events/lessons-and-playlist/3.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/3",
+                "caption": "Our 2nd line dancing Saturday night pop-up at Chaparral 300 Bowling in Chino Hills.  8/8/26."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785825954/ldjohn/events/lessons-and-playlist/1.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/1",
+                "caption": "Lessons and playlist on Monday 8/3/26 at the VFW in Monrovia."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785861147/ldjohn/events/lessons-and-playlist/2.png",
+                "public_id": "ldjohn/events/lessons-and-playlist/2",
+                "caption": "Lessons for beginner, improver, and intermediate classes at the VFW on Sunday 8/2/26."
+            }
+        ]
+    },
+    {
+        "title": "Line Dancing at VFW Monrovia ",
+        "slug": "monday-night-vfw",
+        "date": "Since 7/14/2025",
+        "venue": "VFW Hall",
+        "description": "Sunday lessons for 3 levels: beginner, improver, and intermediate. 1:30p, 2:30p, and 3:30p.\r\n\r\nMonday Line Dancing Club with lessons from 6:30p - 9:00p.\r\n\r\n2nd and 4th Thursdays with Britt and Jocelyn from 6:00p - 9:00p. Beginners class and Line Dancing Club. ",
+        "gallery": [
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788275828/ldjohn/events/monday-night-vfw/8.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/8",
+                "caption": "We country'd up on Monday 8/31/26.  Boots, hats, denim, and flannel."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788275828/ldjohn/events/monday-night-vfw/9.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/9",
+                "caption": "Our August birthday celebrants!"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788275829/ldjohn/events/monday-night-vfw/10.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/10",
+                "caption": "We celebrate the birthdays for the month on the last Monday of each month with cake and singing."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788275830/ldjohn/events/monday-night-vfw/11.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/11",
+                "caption": "8/31/26 Survivors photo after 9p."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/1.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/1",
+                "caption": "Celebrating July birthdays at the VFW.  Thanks to the initiative by the Cherry's, we celebrate the birthdays for each month on the last Monday of that month. We serve cake, sing happy birthday, and have decorations.  7/27/26."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/2.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/2",
+                "caption": "We'll do optional theme dress-ups at the VFW.  This was a Monday Night wearing Polka Dots."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952143/ldjohn/events/monday-night-vfw/3.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/3",
+                "caption": "We celebrated our first year since moving line dancing from The Pour House to the Veterans of Foreign Wars. Jackie is one of our live dancers who has generously baked and designed cakes for special occasions like these. 7/13/26"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952144/ldjohn/events/monday-night-vfw/4.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/4",
+                "caption": "MY FIRST YEAR running Line Dancing at the VFW!  I could not have done this without Jocelyn who has supported me from the beginning when I first started running the line dancing club at the Pour House. 7/14/25 - 7/13/26.\r\n\r\nI couldn't instruct and DJ without Jocelyn handling the logistics of admission. \r\n\r\nBritt-Marie later volunteered bringing our team to three. First with promoting and welcoming passersby while we were at the Pour House and helping Jocelyn with admissions. Now, she and Jocelyn co-teach and run the club on the 2nd and 4th Thursdays at the VFW."
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/5.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/5",
+                "caption": "8/13/26"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/6.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/6",
+                "caption": "Posing with our party decorating extraordinaire,  Barbie. 7/13/26"
+            },
+            {
+                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952146/ldjohn/events/monday-night-vfw/7.jpg",
+                "public_id": "ldjohn/events/monday-night-vfw/7",
+                "caption": "Barbie leads the decoration team sharing her years of experience as a balloon and party decorator. But no team is complete without the volunteers who come early to put up the decorations."
+            }
+        ],
+        "cover": {
+            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785850507/ldjohn/events/monday-night-vfw/cover.png",
+            "public_id": "ldjohn/events/monday-night-vfw/cover"
+        }
+    },
+    {
         "slug": "chaparral-saloon",
         "title": "Line Dancing Pop-ups",
         "date": "Since 7/25/2026",
@@ -144,139 +303,5 @@
             "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785849940/ldjohn/events/royal-caribbean-cruise/cover.jpg",
             "public_id": "ldjohn/events/royal-caribbean-cruise/cover"
         }
-    },
-    {
-        "title": "Line Dancing at VFW Monrovia ",
-        "slug": "monday-night-vfw",
-        "date": "Since 7/14/2025",
-        "venue": "VFW Hall",
-        "description": "Sunday lessons for 3 levels: beginner, improver, and intermediate. 1:30p, 2:30p, and 3:30p.\r\n\r\nMonday Line Dancing Club with lessons from 6:30p - 9:00p.\r\n\r\n2nd and 4th Thursdays with Britt and Jocelyn from 6:00p - 9:00p. Beginners class and Line Dancing Club. ",
-        "gallery": [
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/1.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/1",
-                "caption": "Celebrating July birthdays at the VFW.  Thanks to the initiative by the Cherry's, we celebrate the birthdays for each month on the last Monday of that month. We serve cake, sing happy birthday, and have decorations.  7/27/26."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785857145/ldjohn/events/monday-night-vfw/2.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/2",
-                "caption": "We'll do optional theme dress-ups at the VFW.  This was a Monday Night wearing Polka Dots."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952143/ldjohn/events/monday-night-vfw/3.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/3",
-                "caption": "We celebrated our first year since moving line dancing from The Pour House to the Veterans of Foreign Wars. Jackie is one of our live dancers who has generously baked and designed cakes for special occasions like these. 7/13/26"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952144/ldjohn/events/monday-night-vfw/4.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/4",
-                "caption": "MY FIRST YEAR running Line Dancing at the VFW!  I could not have done this without Jocelyn who has supported me from the beginning when I first started running the line dancing club at the Pour House. 7/14/25 - 7/13/26.\r\n\r\nI couldn't instruct and DJ without Jocelyn handling the logistics of admission. \r\n\r\nBritt-Marie later volunteered bringing our team to three. First with promoting and welcoming passersby while we were at the Pour House and helping Jocelyn with admissions. Now, she and Jocelyn co-teach and run the club on the 2nd and 4th Thursdays at the VFW."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/5.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/5",
-                "caption": "8/13/26"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952145/ldjohn/events/monday-night-vfw/6.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/6",
-                "caption": "Posing with our party decorating extraordinaire,  Barbie. 7/13/26"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785952146/ldjohn/events/monday-night-vfw/7.jpg",
-                "public_id": "ldjohn/events/monday-night-vfw/7",
-                "caption": "Barbie leads the decoration team sharing her years of experience as a balloon and party decorator. But no team is complete without the volunteers who come early to put up the decorations."
-            }
-        ],
-        "cover": {
-            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785850507/ldjohn/events/monday-night-vfw/cover.png",
-            "public_id": "ldjohn/events/monday-night-vfw/cover"
-        }
-    },
-    {
-        "title": "Lessons and Playlist",
-        "slug": "lessons-and-playlist",
-        "date": "August 2026",
-        "venue": "VFW Hall",
-        "description": "What am I teaching and is being requested at our line dancing club?  Here's the place to find it. ",
-        "cover": {
-            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787709438/ldjohn/events/lessons-and-playlist/cover.png",
-            "public_id": "ldjohn/events/lessons-and-playlist/cover"
-        },
-        "gallery": [
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157037/ldjohn/events/lessons-and-playlist/9.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/9",
-                "caption": "8/30/26 Sunday lessons from 1:30p - 4:30p. Beginner, improver, and intermediate."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787539392/ldjohn/events/lessons-and-playlist/8.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/8",
-                "caption": "8/23/26 Sunday lessons from 1:30p - 4:30p. Beginner, improver, and intermediate."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787061411/ldjohn/events/lessons-and-playlist/7.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/7",
-                "caption": "8/17/26 Monday at the VFW in Monrovia"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1787061410/ldjohn/events/lessons-and-playlist/6.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/6",
-                "caption": "8/16/26 Sunday at the VFW in Monrovia"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786547333/ldjohn/events/lessons-and-playlist/5.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/5",
-                "caption": "8/10/26 Monday at the VFW in Monrovia"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786547333/ldjohn/events/lessons-and-playlist/4.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/4",
-                "caption": "8/9/26 Sunday at the VFW in Monrovia"
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1786547153/ldjohn/events/lessons-and-playlist/3.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/3",
-                "caption": "Our 2nd line dancing Saturday night pop-up at Chaparral 300 Bowling in Chino Hills.  8/8/26."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785825954/ldjohn/events/lessons-and-playlist/1.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/1",
-                "caption": "Lessons and playlist on Monday 8/3/26 at the VFW in Monrovia."
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1785861147/ldjohn/events/lessons-and-playlist/2.png",
-                "public_id": "ldjohn/events/lessons-and-playlist/2",
-                "caption": "Lessons for beginner, improver, and intermediate classes at the VFW on Sunday 8/2/26."
-            }
-        ]
-    },
-    {
-        "title": "2026 Calendars",
-        "slug": "calendars",
-        "date": "2026",
-        "venue": "VFW Hall",
-        "description": "Monthly calendars for 2026",
-        "cover": {
-            "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157213/ldjohn/events/calendars/cover.png",
-            "public_id": "ldjohn/events/calendars/cover"
-        },
-        "gallery": [
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157247/ldjohn/events/calendars/3.png",
-                "public_id": "ldjohn/events/calendars/3",
-                "caption": ""
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157246/ldjohn/events/calendars/2.png",
-                "public_id": "ldjohn/events/calendars/2",
-                "caption": ""
-            },
-            {
-                "url": "https://res.cloudinary.com/kq18fuly/image/upload/v1788157214/ldjohn/events/calendars/1.png",
-                "public_id": "ldjohn/events/calendars/1",
-                "caption": ""
-            }
-        ]
     }
 ]
