@@ -1442,6 +1442,23 @@ body{
     section{
         background-color: transparent;
     }
+
+    .bio-quote {
+        background-color: white;
+        border-radius: 10%;
+    }
+
+    .bio-intro{
+        background-color: white;
+        border-radius: 10%;
+
+    }
+
+    .bio-intro p {
+        font-size: medium;
+    }
+
+
 }
 
 /* ---------- EVENT ORDER CONTROLS ---------- */
