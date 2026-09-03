@@ -218,6 +218,10 @@ img{
     padding: 5%;
 }
 
+.bio-intro h1 {
+    text-align: center;
+}
+
 .flyer{
     display:block;
     width:100%;
@@ -631,13 +635,20 @@ img{
 
 /* ---------- CONTACT ---------- */
 
-#contact{
-    text-align:center;
+#contact {
+    width: 100%;
+    background-color: transparent;
+    text-align: center;
+    padding: 25px 0;
 }
 
 .contact-booking {
+    background-color: white;
+    border-radius: 20%;
 
-    margin-top: 35px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 20px 30px;
 
     display: flex;
     flex-direction: column;
@@ -645,7 +656,6 @@ img{
     gap: 18px;
 
     font-family: "Montserrat", sans-serif;
-
 }
 
 .contact-booking .phone {
@@ -1447,6 +1457,14 @@ body{
         margin-bottom:0;
         border-radius: 0;
     }
+
+    .bio-intro {
+        font-size: small;
+    }
+
+    .bio-intro h1 {
+        margin-bottom: 20px;
+    }
 }
 
 /* Tablet / very narrow laptop */
@@ -1490,7 +1508,6 @@ body{
     .bio-intro{
         background-color: white;
         border-radius: 10%;
-
     }
 
     .bio-intro p {
