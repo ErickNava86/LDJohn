@@ -212,6 +212,12 @@ img{
     margin-bottom:25px;
 }
 
+.bio-intro{
+    background-color: white;
+    border-radius: 2%;
+    padding: 5%;
+}
+
 .flyer{
     display:block;
     width:100%;
